@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello DefaultController!{% endblock %}
+{% block title %}Bonjour Page d'accueil{% endblock %}
 
 {% block body %}
 <style>
@@ -9,12 +9,17 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+    <h1>Bonjour le monde</h1>
 
-    This friendly message is coming from:
+    Vous êtes sur la page d'accueil...
+    <div>
+        <br>
+    </div>
+
     <ul>
         <li>Your controller at <code><a href="{{ 'C:/wamp64/www/symp_flo/lemauvaiscoin/src/Controller/DefaultController.php'|file_link(0) }}">src/Controller/DefaultController.php</a></code></li>
         <li>Your template at <code><a href="{{ 'C:/wamp64/www/symp_flo/lemauvaiscoin/templates/default/index.html.twig'|file_link(0) }}">templates/default/index.html.twig</a></code></li>
     </ul>
+    <a class="nav-link" href="{{ path('app_price') }}">Chez nous, c'est pas cher!</a>
 </div>
 {% endblock %}

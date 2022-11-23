@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}A propos!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h1>A propos...</h1>
+</div>
+<h2>Le ciel est notre territoire</h2>
+    <br>
+<div>
+    <img class="fit-picture" src="{{ asset('img/iss066e172499.jpg') }}" width="730" height="475"
+         alt="La terre depuis la station spatiale internationale">
+    <img class="fit-picture" src="{{ asset('img/PIA16008_medium.jpg') }}" width="730" height="475"
+         alt="La terre depuis la station spatiale internationale">
+</div>
+
+
+{% endblock %}

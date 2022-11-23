@@ -15,4 +15,9 @@ class DefaultController extends AbstractController
             'controller_name' => 'DefaultController',
         ]);
     }
+
+    //Pour ajouter une class Controleur automatiquement:
+// php .\bin\console m:controller
+
+
 }
