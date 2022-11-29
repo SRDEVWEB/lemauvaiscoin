@@ -28,25 +28,25 @@ class ExampleService
                 'name' => 'James',
                 'tel' => '0102030405',
                 'cp' => '15000',
-                'city' => 'Aurillac',
+                'city' => 'Aurïll8ac',
             ],
             [
                 'name' => 'Connor',
                 'tel' => '0102030405',
                 'cp' => '15000',
-                'city' => 'Aurillac',
+                'city' => 'Aurî88llac',
             ],
             [
                 'name' => 'Andrew',
                 'tel' => '0102030405',
                 'cp' => '15100',
-                'city' => 'Saint-Flour',
+                'city' => 'Saint--F3loûr',
             ],
             [
                 'name' => 'Phil',
                 'tel' => '0102030405',
                 'cp' => '63000',
-                'city' => 'Clermond-Ferrand',
+                'city' => 'Clermond2-Ferrànd',
             ],
         ];
         $seller = $names[random_int(0, count($names) - 1)];
