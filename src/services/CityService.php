@@ -73,13 +73,13 @@ class CityService
         $normalizedCity = $this->normalizer($city);
         // todo un foreach et check si on a la ville, si on trouve alors on stock dans $cityFound
 
-        foreach ($contentData as $Data){
+        foreach ($contentData as $data){
             //dump("citysFound: ".strtolower($Data['nomCommune']));
-            if  (strtolower($Data['nomCommune'])===$normalizedCity) {
+            if  (strtolower($data['nomCommune'])===$normalizedCity) {
                 //$cityFound = $Data['nomCommune'];
                 //dump($Data['codeCommune']);
                 //$cityFound=$Data['nomCommune'];
-                $cityFound['codeCommune'] = $Data['codeCommune'];
+                $cityFound['codeCommune'] = $data['codeCommune'];
                 dump("Code commune: " . $cityFound['codeCommune']);
                 break;
             }
@@ -99,7 +99,7 @@ dump("codeInsee:".$codeInsee);
 
         $response = $this->client->request(
             'GET',
-            'https://geo.api.gouv.fr/communes?code=' . $codeInsee . '&fields=nom,codesPostaux,departement&format=json&geometry=centre'
+            'https://geo.api.gouv.fr/communes?code=' . $codeInsee . '&fields=nom,codesPostaux,departement,region,population&format=json&geometry=centre'
         );
 
         //dump("INSEE:" .$response['departement']);
@@ -107,26 +107,30 @@ dump("codeInsee:".$codeInsee);
         $contentData = $response->toArray();
         // $content = ['id' => 521583, 'name' => 'symfony-docs', ...]
 
-        if(!is_array($contentData)){
-            throw new \RuntimeException('bad format data');
-        }
-
         //$urlApiCommune = 'https://geo.api.gouv.fr/communes/' . $codeInsee
           //  . '?fields=nom,code,codesPostaux,siren,codeEpci,codeDepartement,codeRegion,population,departement&format=json&geometry=centre';
 
-dump($contentData);
+
 
         // todo si jamais la reponse est bonne alors on return la reponse de l'api
+        //dump($contentData['0']['codesPostaux']);
 
         // todo si non alors on return UKN
+        if(!is_array($contentData)){
+            throw new \RuntimeException('bad format data');
+        }else{
 
-        return  [
-            'city' => 'unknown',
-            'cp' => 'unknown',
-            'lat' => '0',
-            'lon' => '0',
-            'departement' =>'unknown',
-        ];
+            return  [
+                'city' => $contentData[0]['nom'],
+                'cp' => $contentData[0]['codesPostaux']['0'],
+                'population' => $contentData[0]['population'],
+                'region' => $contentData[0]['region']['nom'],
+                'departement' =>$contentData[0]['departement']['code'],
+            ];
+
+        }
+
+
     }
 
 
