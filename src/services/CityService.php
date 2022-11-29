@@ -75,7 +75,8 @@ class CityService
 
         foreach ($contentData as $data){
             //dump("citysFound: ".strtolower($Data['nomCommune']));
-            if  (strtolower($data['nomCommune'])===$normalizedCity) {
+            $normalizedDateCity = strtolower($this->normalizer($data['nomCommune']));
+            if  ($normalizedDateCity===$normalizedCity) {
                 //$cityFound = $Data['nomCommune'];
                 //dump($Data['codeCommune']);
                 //$cityFound=$Data['nomCommune'];
