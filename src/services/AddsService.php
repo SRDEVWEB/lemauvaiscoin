@@ -20,7 +20,7 @@ class AddsService
                 'catégorie' => 'alimentaire', //Mon chere Watson
                 'img' => '',
                 'titre' =>'',
-                'text'=>'Une petite faim? go to le congel!',
+                'text'=>'Une petite faim? go to le congélateur!',
 
             ],
             [
@@ -41,11 +41,11 @@ class AddsService
             ],
             [
                 'marque' => 'Marie',
-                'produit' => 'Poissons panés',
+                'produit' => 'Papillote de Cabillaud et Riz aux petits légumes 300g',
                 'catégorie' => 'alimentaire', //Mon chere Watson
-                'img' => '',
+                'img' => '2.jpg',
                 'titre' =>'',
-                'text'=>'A table',
+                'text'=>'',
             ],
             [
                 'marque' => 'Rizla',
