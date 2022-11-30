@@ -118,7 +118,7 @@ class CityService
         // todo si non alors on return UKN
         if (!is_array($contentData)) {
             throw new \RuntimeException('bad format data');
-        } else {
+        }
 
             return [
                 'city' => $contentData[0]['nom'],
@@ -128,7 +128,7 @@ class CityService
                 'departement' => $contentData[0]['departement']['code'],
             ];
 
-        }
+
 
 
 
