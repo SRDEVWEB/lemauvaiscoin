@@ -6,6 +6,22 @@
     <div class="container">
         <h1>Je suis une annonce</h1>
         <div class="row">
+            <div class="col-3">
+                <div class="h4">Publicité</div>
+                <div class="marque">
+                    {{ add.marque }}
+                </div>
+                <div class="produit">
+                    {{ add.produit }}
+                </div>
+                <div class="catégorie">
+                    {{ add.catégorie }}
+                </div>
+                <div class="img">
+                    <img class="fit-picture" src="{{ asset('img/' ~ add.img ) }}" width="150" height="150"
+                         alt="{{ add.marque }}">
+                </div>
+            </div>
             <div class="col-6">
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
                 dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
@@ -14,7 +30,7 @@
                 fugiat
                 nulla pariatur.
             </div>
-            <div class="col-6">
+            <div class="col-3">
                 <div class="h4">Vendeur</div>
                 <div class="subtitle">
                     {{ seller.name }}
