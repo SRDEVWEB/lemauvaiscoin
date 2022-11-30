@@ -20,7 +20,7 @@ class AddsService
                 'catégorie' => 'alimentaire', //Mon chere Watson
                 'img' => '',
                 'titre' =>'',
-                'text'=>'',
+                'text'=>'Une petite faim? go to le congel!',
 
             ],
             [
@@ -29,7 +29,7 @@ class AddsService
                 'catégorie' => 'tabac', //Mon chere Watson
                 'img' => '',
                 'titre' =>'',
-                'text'=>'',
+                'text'=>'Pour les toxicos, le meilleur du pas bon!',
             ],
             [
                 'marque' => 'Puma',
@@ -45,7 +45,7 @@ class AddsService
                 'catégorie' => 'alimentaire', //Mon chere Watson
                 'img' => '',
                 'titre' =>'',
-                'text'=>'',
+                'text'=>'A table',
             ],
             [
                 'marque' => 'Rizla',
@@ -53,7 +53,7 @@ class AddsService
                 'catégorie' => 'bimboloterie', //Mon chere Watson
                 'img' => '',
                 'titre' =>'',
-                'text'=>'',
+                'text'=>'Pas de fumée sans feu, pas de roulée sans filtre!',
             ],
         ];
         $add = $adds[random_int(0, count($adds) - 1)];

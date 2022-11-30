@@ -6,8 +6,12 @@
     <div class="container">
         <h1>Je suis une annonce</h1>
         <div class="row">
+
             <div class="col-3">
-                <div class="h4">Publicité</div>
+                <div class="card  border border-dark rounded-top">
+
+                <div class="h5">Sponsorisé</div>
+                <span class="">
                 <div class="marque">
                     {{ add.marque }}
                 </div>
@@ -17,9 +21,18 @@
                 <div class="catégorie">
                     {{ add.catégorie }}
                 </div>
-                <div class="img">
-                    <img class="fit-picture" src="{{ asset('img/' ~ add.img ) }}" width="150" height="150"
-                         alt="{{ add.marque }}">
+
+                {% if add.img == false %}
+                <div class="h4 txt bg-primary text-secondary text-center">
+                    {{ add.text }}
+                </div>
+                {% else %}
+                    <div class="img text-center">
+                        <img class="fit-picture" src="{{ asset('img/' ~ add.img ) }}" width="150" height="150"
+                             alt="{{ add.marque }}">
+                    </div>
+                {% endif %}
+
                 </div>
             </div>
             <div class="col-6">
