@@ -15,7 +15,6 @@ class DefaultController extends AbstractController
     #[Route('/', name: 'app.home')]
     public function index(): Response
     {
-
         return $this->render('default/index.html.twig', [
             'controller_name' => 'DefaultController',
         ]);
@@ -25,10 +24,12 @@ class DefaultController extends AbstractController
     public function displaySimple(
         ExampleService $exampleService,
         AddsService $adds,
-        int $id
+        int $id=43,
+
     ): Response {
         $seller = $exampleService->getSeller();
         $add = $adds->getAdds();
+
         //dump($seller);
         //die;
 
