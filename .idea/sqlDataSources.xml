@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DdlMappings">
+    <mapping uuid="4e73abef-87b4-4550-b21b-0b0b5e92a388" name="histoire_que_cest_toi_qui_decide@localhost Mapping">
+      <data-sources db="3988abe1-0168-4bdb-a7de-bcb334bac37a" ddl="688aa688-0b4f-4555-bca0-ec3d658f6382" />
+      <scope>
+        <node kind="database" qname="@">
+          <node kind="schema" qname="@" />
+        </node>
+      </scope>
+    </mapping>
+  </component>
+  <component name="SqlDataSourceStorage">
+    <option name="dataSources">
+      <list>
+        <State>
+          <option name="id" value="688aa688-0b4f-4555-bca0-ec3d658f6382" />
+          <option name="name" value="histoire_que_cest_toi_qui_decide@localhost (DDL)" />
+          <option name="languageId" value="MySQL" />
+          <option name="parent" value="3988abe1-0168-4bdb-a7de-bcb334bac37a" />
+          <option name="urls">
+            <array />
+          </option>
+        </State>
+      </list>
+    </option>
+  </component>
+</project>
