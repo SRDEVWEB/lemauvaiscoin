@@ -48,10 +48,18 @@ class ExampleService
                 'cp' => '63000',
                 'city' => 'Clermond2-Ferrànd',
             ],
+            [
+                'name' => 'Séb',
+                'tel' => '0707070707',
+                'cp' => '69330',
+                'city' => 'Paris',
+            ],
         ];
         $seller = $names[random_int(0, count($names) - 1)];
 
         $seller['city_data'] = $this->cityService->getCity($seller['cp'], $seller['city']);
+
+
 
         return $seller;
     }

@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\services\CityService;
 use App\services\ExampleService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -10,29 +11,30 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class DefaultController extends AbstractController
 {
-    #[Route('/', name: 'app_home')]
+    #[Route('/', name: 'app.home')]
     public function index(): Response
     {
+
         return $this->render('default/index.html.twig', [
             'controller_name' => 'DefaultController',
         ]);
     }
 
-    //Pour ajouter une class Controleur automatiquement:
-// php .\bin\console m:controller
     #[Route('/annonce/{id}', name: 'ads.display.simple', requirements: ['id' => '^\d+'])]
     public function displaySimple(
         ExampleService $exampleService,
+        CityService $cityService,
         int $id
     ): Response {
         $seller = $exampleService->getSeller();
-
-        dump($seller);
-        die;
+        $cityData = $cityService->getCity($seller['cp'],$seller['city']);
+        //dump($seller);
+        //die;
 
         return $this->render('default/ad.display.html.twig', [
             'controller_name' => 'DefaultController',
             'seller' => $seller,
+            'city_data' => $cityData,
         ]);
     }
 
@@ -43,5 +45,4 @@ class DefaultController extends AbstractController
             'controller_name' => 'DefaultController',
         ]);
     }
-
 }
