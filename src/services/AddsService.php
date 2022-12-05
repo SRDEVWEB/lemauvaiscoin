@@ -17,7 +17,7 @@ class AddsService
             [
                 'marque' => 'Findus',
                 'produit' => 'Poissons panés',
-                'catégorie' => 'alimentaire', //Mon chere Watson
+                'categorie' => 'alimentaire', //Mon chere Watson
                 'img' => '',
                 'titre' =>'',
                 'text'=>'Une petite faim? go to le congélateur!',
@@ -26,7 +26,7 @@ class AddsService
             [
                 'marque' => 'Interval',
                 'produit' => 'Pot Feuille Blonde 90g',
-                'catégorie' => 'tabac', //Mon chere Watson
+                'categorie' => 'tabac', //Mon chere Watson
                 'img' => '',
                 'titre' =>'',
                 'text'=>'Pour les toxicos, le meilleur du pas bon!',
@@ -34,7 +34,7 @@ class AddsService
             [
                 'marque' => 'Puma',
                 'produit' => 'Undersky/Black',
-                'catégorie' => 'vêtement', //Mon chere Watson
+                'categorie' => 'vêtement', //Mon chere Watson
                 'img' => '1.jpg',
                 'titre' =>'',
                 'text'=>'',
@@ -42,7 +42,7 @@ class AddsService
             [
                 'marque' => 'Marie',
                 'produit' => 'Papillote de Cabillaud et Riz aux petits légumes 300g',
-                'catégorie' => 'alimentaire', //Mon chere Watson
+                'categorie' => 'alimentaire', //Mon chere Watson
                 'img' => '2.jpg',
                 'titre' =>'',
                 'text'=>'',
@@ -50,7 +50,7 @@ class AddsService
             [
                 'marque' => 'Rizla',
                 'produit' => '150 filtres diam.6mm',
-                'catégorie' => 'bimboloterie', //Mon chere Watson
+                'categorie' => 'bimboloterie', //Mon chere Watson
                 'img' => '',
                 'titre' =>'',
                 'text'=>'Pas de fumée sans feu, pas de roulée sans filtre!',
