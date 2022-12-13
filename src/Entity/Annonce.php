@@ -67,6 +67,15 @@ class Annonce
     #[ORM\ManyToOne(inversedBy: 'annonces')]
     private ?Owner $owner = null;
 
+    #[ORM\Column(length: 255)]
+    private ?string $title = null;
+
+    #[ORM\Column]
+    private ?float $price = null;
+
+    #[ORM\Column]
+    private ?int $notes = null;
+
     public function __construct()
     {
         $this->produit = new ArrayCollection();
@@ -292,4 +301,18 @@ class Annonce
 
         return $this;
     }
+
+    public function getNotes(): ?int
+    {
+        return $this->notes;
+    }
+
+    public function setNotes(int $notes): self
+    {
+        $this->notes = $notes;
+
+        return $this;
+    }
+
+
 }

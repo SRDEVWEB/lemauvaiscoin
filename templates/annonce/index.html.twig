@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello DefaultController!{% endblock %}
+
+{% block body %}
+    <style>
+        .example-wrapper {
+            margin: 1em auto;
+            max-width: 800px;
+            box-shadow: #6f42c1;
+            width: 95%;
+            font: 18px/1.5 sans-serif;
+        }
+
+    </style>
+<div class="container">
+    <div class="example-wrapper">
+        <h1>Hello 🤖</h1>
+
+        <div class="right-side">
+            <ul class="list-unstyled m-0 p-0 d-flex">
+                <li class="pr-2"><a class="text-white" href="/profile">{{ app.user.username }}</a></li>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <li class="pr-2"><a class="text-white" href="/admin">administration</a></li>
+                {% endif %}
+                <li class="pr-2"><a class="text-danger" href="{{ path('app.logout') }}">logout</a></li>
+            </ul>
+        </div>
+
+        <div class="w-100">
+            <div class="bg-warning text-black-50 p-4 m-4 rounded-circle text-center shadow">
+                {{ form(form) }}
+            </div>
+        </div>
+    </div>
+    <br>
+    </div>
+{% endblock %}
+
+
+{% block javascript_footer %}
+    <!-- coucou -->
+{% endblock %}
