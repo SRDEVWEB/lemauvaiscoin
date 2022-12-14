@@ -56,7 +56,7 @@ class DefaultController extends AbstractController
         ]);
     }
 
-    #[Route('/annonce/{id}', name: 'ads.display.simple', requirements: ['id' => '^\d+'])]
+    #[Route('/annonce/id', name: 'ads.display.simple', requirements: ['id' => '^\d+'])]
     public function displaySimple(
         ExampleService $exampleService,
         AddsService $adds,
@@ -73,6 +73,7 @@ class DefaultController extends AbstractController
             'controller_name' => 'DefaultController',
             'seller' => $seller,
             'add' => $add,
+            'id' => $id
         ]);
     }
 

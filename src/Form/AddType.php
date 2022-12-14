@@ -45,7 +45,10 @@ class AddType extends AbstractType
             ->add('produit')
             ->add('img')
             ->add('categorie')
-            ->add('owner')
+            ->add('owner',\Symfony\Component\Form\Extension\Core\Type\TextType::class,[
+                'attr' => array(
+                    'id' => 'name',
+                    'class' => 'Owner')])
             ->add('notes')
             ->add('Envoyer', SubmitType::class,["label"=>"Valider"])
         ;

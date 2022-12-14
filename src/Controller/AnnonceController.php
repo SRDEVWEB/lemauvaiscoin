@@ -32,8 +32,7 @@ class AnnonceController extends AbstractController
             throw new AccessDeniedHttpException('You need to be logged');
         }
 
-
-        $annonce = new Annonce($user,'Ma nouvelle annonce',0,false);
+        $annonce = new Annonce();
 
         $form=$this->createForm(AddType::class, $annonce);
         $form->handleRequest($request);

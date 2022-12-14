@@ -19,9 +19,11 @@
 
         <div class="right-side">
             <ul class="list-unstyled m-0 p-0 d-flex">
-                <li class="pr-2"><a class="text-white" href="/profile">{{ app.user.username }}</a></li>
+                <li class="pr-2"><a class="text-white" href="/profile">{{ app.user.name }}</a>/</li>
+                <li class="pr-2"><a class="text-white" href="/profile">{{ app.user.firstname }}</a>/</li>
+                <li class="pr-2"><a class="text-white" href="/profile">{{ app.user.email }}</a>/</li>
                 {% if is_granted('ROLE_ADMIN') %}
-                    <li class="pr-2"><a class="text-white" href="/admin">administration</a></li>
+                    <li class="pr-2"><a class="text-white" href="/admin">administration</a>/</li>
                 {% endif %}
                 <li class="pr-2"><a class="text-danger" href="{{ path('app.logout') }}">logout</a></li>
             </ul>

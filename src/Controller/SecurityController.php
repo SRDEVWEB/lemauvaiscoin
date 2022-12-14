@@ -21,12 +21,10 @@ class SecurityController extends AbstractController
             return $this->redirectToRoute('app.home');
         }
 
-        $name = $utils->getName();
         $error = $utils->getLastAuthenticationError();
 
         return $this->render('default/login.html.twig', [
             'error' => $error,
-            'name' => $name,
         ]);
     }
 
