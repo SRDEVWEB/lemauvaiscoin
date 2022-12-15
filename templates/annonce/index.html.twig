@@ -19,11 +19,12 @@
 
         <div class="right-side">
             <ul class="list-unstyled m-0 p-0 d-flex">
-                <li class="pr-2"><a class="text-white" href="/profile">{{ app.user.name }}</a>/</li>
-                <li class="pr-2"><a class="text-white" href="/profile">{{ app.user.firstname }}</a>/</li>
-                <li class="pr-2"><a class="text-white" href="/profile">{{ app.user.email }}</a>/</li>
+                <li class="pr-2">ID : <a class="text-white" href="/profile">{{ app.user.id }}</a>&nbsp;/&nbsp; </li>
+                <li class="pr-2">Prénom : <a class="text-white" href="/profile">{{ app.user.name }}</a>&nbsp;/&nbsp; </li>
+                <li class="pr-2">Nom : <a class="text-white" href="/profile">{{ app.user.firstname }}</a>&nbsp;/&nbsp; </li>
+                <li class="pr-2">E-mail : <a class="text-white" href="/profile">{{ app.user.email }}</a>&nbsp;/&nbsp; </li>
                 {% if is_granted('ROLE_ADMIN') %}
-                    <li class="pr-2"><a class="text-white" href="/admin">administration</a>/</li>
+                    <li class="pr-2"><a class="text-white" href="/admin">administration</a>&nbsp;/&nbsp; </li>
                 {% endif %}
                 <li class="pr-2"><a class="text-danger" href="{{ path('app.logout') }}">logout</a></li>
             </ul>
