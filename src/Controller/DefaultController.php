@@ -4,16 +4,19 @@ namespace App\Controller;
 
 use App\Entity\Annonce;
 use App\Entity\Owner;
+use App\FormCompte\AddCompteType;
 use App\services\AddsService;
 use App\services\CityService;
 use App\services\ExampleService;
 use App\Type\AnnonceType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 
 class DefaultController extends AbstractController
@@ -26,35 +29,39 @@ class DefaultController extends AbstractController
         ]);
     }
 
-    #[Route('/add/annonce', name: 'app.home.new')]
-    public function addAnnonce(
-        EntityManagerInterface $em,
-        Request $request,
-    ): Response {
-        $user = $em->getRepository(Owner::class)
-            ->findOneBy(['id' => 1]);
-        if (!$user instanceof Owner) {
-            throw new AccessDeniedHttpException();
-        }
+    #[Route('/compte', name: 'new_compte')]
+    public function addCompte( EntityManagerInterface $em,
+                               Request $request,UserPasswordHasherInterface $passwordHasher,
+    ): Response
+    {
+        $compte= new Owner();
+        $compte->setVisible('1');
+        $compte->setRoles(["ROLE_USER"]);
 
-        $annonce = new Annonce(
-            $user, 'Ma nouvelle annonce',
-            0, false
-        );
-        $form = $this->createForm(AnnonceType::class, $annonce);
+        $form=$this->createForm(AddCompteType::class,$compte);
         $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
 
-            // example of not mapped data
-            $notes = $form->get('notes')?->getData();
-            $em->persist($annonce);
-            $em->flush();
+        if($form->isSubmitted() && $form->isValid()) {
+            $plaintextPassword =$form->get('password2')->getData();
+
+            if ($compte->getPassword()===$plaintextPassword) {
+                $plaintextPassword = $compte->getPassword();
+                $hashedPassword = $passwordHasher->hashPassword($compte, $plaintextPassword);
+                $compte->setPassword($hashedPassword);
+
+                $em->persist($compte);
+                $em->flush();
+            }else{
+                echo('Le mot de passe ne correspond pas!!!');
+           }
         }
-
-        return $this->render('default/add.annonce.html.twig', [
-            'formulaireAddAnnonce' => $form->createView(),
+        return $this->renderForm('compte/index.html.twig', [
+            'formCompte'=>$form,
+            'controller_name' => 'Créer un compte'
         ]);
     }
+
+
 
     #[Route('/annonce/id', name: 'ads.display.simple', requirements: ['id' => '^\d+'])]
     public function displaySimple(

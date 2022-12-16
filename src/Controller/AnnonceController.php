@@ -19,7 +19,7 @@ class AnnonceController extends AbstractController
     public function index(): Response
     {
         return $this->render('annonce/index.html.twig', [
-            'controller_name' => 'AnnonceController',
+            'controller_name' => 'Annonces',
         ]);
     }
 
@@ -33,9 +33,14 @@ class AnnonceController extends AbstractController
         }
 
         $annonce = new Annonce();
+        $annonce->setVisible('1');
+        $annonce->setOwner($user);
+        $annonce->setCommentaires("Valeur par défaut");
 
         $form=$this->createForm(AddType::class, $annonce);
         $form->handleRequest($request);
+
+
         if ($form->isSubmitted() && $form->isValid()) {
 
             $em->persist($annonce);

@@ -19,8 +19,6 @@ class AnnonceRepository extends ServiceEntityRepository
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, Annonce::class);
-        //Ici que l'on lie le champs du form au $user? {{ app.user.id }}
-
     }
 
     public function save(Annonce $entity, bool $flush = false): void

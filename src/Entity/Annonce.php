@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\AnnonceRepository;
+use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
@@ -31,7 +32,7 @@ class Annonce
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $dateUpdate = null;
 
-    #[ORM\Column(type: Types::DATE_MUTABLE)]
+    #[ORM\Column(type: Types::DATE_MUTABLE,nullable: true)]
     private ?\DateTimeInterface $dateSeil = null;
 
     #[ORM\Column]
@@ -67,18 +68,12 @@ class Annonce
     #[ORM\ManyToOne(inversedBy: 'annonces')]
     private ?Owner $owner = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $title = null;
-
-    #[ORM\Column]
-    private ?float $price = null;
-
-    #[ORM\Column]
-    private ?int $notes = null;
 
     public function __construct()
     {
         $this->produit = new ArrayCollection();
+        $this->dateDepot= new DateTime();
+        $this->dateUpdate= new DateTime();
     }
 
     public function getId(): ?int
@@ -302,17 +297,6 @@ class Annonce
         return $this;
     }
 
-    public function getNotes(): ?int
-    {
-        return $this->notes;
-    }
-
-    public function setNotes(int $notes): self
-    {
-        $this->notes = $notes;
-
-        return $this;
-    }
 
 
 }

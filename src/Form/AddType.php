@@ -17,15 +17,7 @@ class AddType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('dateDepot', \Symfony\Component\Form\Extension\Core\Type\DateType::class,[
-                'label' => "Date du dépôt de l'annonce : ",
-                    'data' => new \DateTime()
-            ])
-            ->add('dateUpdate', \Symfony\Component\Form\Extension\Core\Type\DateType::class,[
-                'data' => new \DateTime(),
-                'label' => "Date de la dernière mise à jour de l'annonce : ",
-            ])
-            ->add('visible')
+
             ->add('prix')
             ->add('commentaires', \Symfony\Component\Form\Extension\Core\Type\TextType::class,[
                 'attr'=>['placeholder'=>'Faites un commentaire...']])
@@ -45,11 +37,7 @@ class AddType extends AbstractType
             ->add('produit')
             ->add('img')
             ->add('categorie')
-            ->add('owner',\Symfony\Component\Form\Extension\Core\Type\TextType::class,[
-                'attr' => array(
-                    'id' => 'name',
-                    'class' => 'Owner')])
-            ->add('notes')
+
             ->add('Envoyer', SubmitType::class,["label"=>"Valider"])
         ;
     }
