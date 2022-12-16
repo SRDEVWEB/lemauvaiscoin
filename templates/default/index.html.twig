@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Bonjour Page d'accueil{% endblock %}
+{% block title %}Page d'accueil{% endblock %}
 
 {% block body %}
 <style>
@@ -9,21 +9,17 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Bonjour le monde</h1>
-
-    Vous êtes sur la page d'accueil...
+    <h1>Bonjour 🌍</h1>
     <div>
-        <br>
+        <h2>Vous êtes sur la page d'accueil...</h2>
     </div>
 
     <ul>
-        <li>Your controller at <code><a href="{{ 'C:/wamp64/www/symp_flo/lemauvaiscoin/src/Controller/DefaultController.php'|file_link(0) }}">src/Controller/DefaultController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'C:/wamp64/www/symp_flo/lemauvaiscoin/templates/default/index.html.twig'|file_link(0) }}">templates/default/index.html.twig</a></code></li>
-    </ul>
     <li>Créer un compte : <code> <a href="{{ path('new_compte') }}">S'inscrire</a></code></li>
     <a class="nav-link" href="{{ path('app_price') }}">Chez nous, c'est pas cher!</a>
     <li>ANNONCES : <code> <a href="{{ path('ads.display.simple') }}">Annonce n° 1</a></code></li>
     <li>Ajouter une ANNONCE : <code> <a href="{{ path('new_annonce') }}">Annonce</a></code></li>
+    </ul>
 
 
 </div>

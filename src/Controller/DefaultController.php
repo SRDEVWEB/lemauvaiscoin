@@ -8,7 +8,6 @@ use App\FormCompte\AddCompteType;
 use App\services\AddsService;
 use App\services\CityService;
 use App\services\ExampleService;
-use App\Type\AnnonceType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;

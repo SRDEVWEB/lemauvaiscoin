@@ -38,7 +38,7 @@ class AddType extends AbstractType
             ->add('img')
             ->add('categorie')
 
-            ->add('Envoyer', SubmitType::class,["label"=>"Valider"])
+            ->add('Envoyer', SubmitType::class,["label"=>"Valider 🙈🙉🙊"])
         ;
     }
 

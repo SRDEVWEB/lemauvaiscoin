@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello DefaultController!{% endblock %}
+{% block title %}Création d'un compte{% endblock %}
 
 {% block body %}
     <style>
@@ -15,12 +15,14 @@
     </style>
     <div class="container">
         <div class="example-wrapper">
-            <h1>Créer un compte 🤖</h1>
+            <h1>Créer un compte 👻</h1>
 
-            <div class="w-100">
-                <div class="bg-warning text-black-50 p-4 m-4 rounded-circle text-center shadow">
+
+
+                <div class="bg-warning text-black-50 p-4 m-4 rounded-2 shadow">
+{#                <div class="bg-warning text-black-50 p-4 m-4 rounded-circle text-center shadow">#}
                     {{ form(formCompte) }}
-                </div>
+{#                </div>#}
             </div>
         </div>
         <br>

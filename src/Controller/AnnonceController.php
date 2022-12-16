@@ -5,7 +5,6 @@ namespace App\Controller;
 use App\Entity\Annonce;
 use App\Entity\Owner;
 use App\Form\AddType;
-use App\Type\AnnonceType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -29,13 +28,22 @@ class AnnonceController extends AbstractController
     ): Response {
         $user = $this->getUser();
         if (!$user instanceof Owner) {
-            throw new AccessDeniedHttpException('You need to be logged');
+            throw new AccessDeniedHttpException('Vous devez êtes connecté!');
         }
 
         $annonce = new Annonce();
         $annonce->setVisible('1');
         $annonce->setOwner($user);
-        $annonce->setCommentaires("Valeur par défaut");
+        $annonce->setCommentaires("Ajouter un commentaire...");
+
+        $annonce->setPrix('0');
+$annonce->setDescription('Ajoutez une description...');
+$annonce->setCouleur('orange');
+$annonce->setPoids('0');
+$annonce->setHauteur('0');
+$annonce->setLargeur('0');
+$annonce->setProfondeur('0');
+$annonce->setDimensions('0');
 
         $form=$this->createForm(AddType::class, $annonce);
         $form->handleRequest($request);

@@ -1,10 +1,20 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Annonce !{% endblock %}
+{% block title %}Page de login{% endblock %}
 
 {% block body %}
+    <style>
+        .example-wrapper {
+            margin: 1em auto;
+            max-width: 800px;
+            box-shadow: #6f42c1;
+            width: 95%;
+            font: 18px/1.5 sans-serif;
+        }
 
+    </style>
     <div class="container">
+    <div class="example-wrapper">
         <div class="row">
             <div class="col-12">
                 {% if error is not null %}
@@ -12,7 +22,7 @@
                         {{ error.messageKey|trans(error.messageData, 'security') }}
                     </div>
                 {% endif %}
-
+                <div class="bg-warning text-black-50 p-4 m-4 rounded-2 shadow">
                 <form action="{{ path('app.login') }}" method="post">
                     <input type="hidden"
                            value="{{ csrf_token('authenticate') }}"
@@ -28,15 +38,15 @@
                             <label for="loginpwd" class="form-label">Mon mot de passe</label>
                             <input type="password" class="form-control" name="_password" id="loginpwd">
                         </div>
-                        <div class="col-12 text-center">
-                            <button class="btn btn-primary" type="submit">Se connecter 🦆</button>
+                        <div class="col-12">
+                            <button class="btn btn-primary" type="submit">Se connecter 🙈🙉🙊</button>
                         </div>
                     </div>
                 </form>
-
+                </div>
             </div>
         </div>
     </div>
-
+    </div>
 
 {% endblock %}
