@@ -48,7 +48,6 @@ $annonce->setDimensions('0');
         $form=$this->createForm(AddType::class, $annonce);
         $form->handleRequest($request);
 
-
         if ($form->isSubmitted() && $form->isValid()) {
 
             $em->persist($annonce);

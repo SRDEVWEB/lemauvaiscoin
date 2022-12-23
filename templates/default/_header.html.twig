@@ -1,30 +1,55 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="container-fluid">
-
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarColor02">
-      <ul class="navbar-nav me-auto">
-        <li class="nav-item">
-          <a class="nav-link active" href="{{ path('app.home') }}">Accueil
-            <span class="visually-hidden">(current)</span>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{ path('app_feature') }}">Features</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{ path('app_price') }}">Nos prix</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="{{ path('app_propos') }}">A propos</a>
-        </li>
-      </ul>
-      <form class="d-flex">
-        <input class="form-control me-sm-2" type="text" placeholder="Search">
-        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
-      </form>
+  <nav class="navbartop navbar navbar-expand-lg">
+    <div class="c container-fluid">
+      <a class="a navbar-brand text-center" href="index.php"><h1>L'entrepôt<br>du net</h1></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="hamburger navbar-toggler-icon rounded-5"></span>
+      </button>
+      <div class="b collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="lia nav-item">
+            <a class="nav-link disabled">Menu : </a>
+          </li>
+          <li class="lia nav-item">
+            <a class="nav-link" href="class.php">Mon compte</a>
+          </li>
+          <li class="lia nav-item">
+            <a class="nav-link" href="class.php">Mes annonces</a>
+          </li>
+          <li class="lia nav-item">
+            <a class="nav-link" href="class.php">Mon panier</a>
+          </li>
+          <li class="lia nav-item">
+            <a class="nav-link" href="class.php">Mes recherches sauvegardées</a>
+          </li>
+          <li class="lia nav-item">
+            <a class="nav-link" href="class.php">Mes achats en cours</a>
+          </li>
+          <!--<li class="lia nav-item">
+                 <a class="nav-link disabled">Disabled</a>
+               </li>
+               <li class="lia nav-item">
+                 <a class="nav-link disabled">Disabled</a>
+               </li>
+               <li class="lia nav-item">
+                 <a class="nav-link disabled">Disabled</a>
+               </li>
+               <li class="lia nav-item">
+                 <a class="nav-link disabled">Disabled</a>
+               </li>
+               <li class="lia nav-item">
+                 <a class="nav-link disabled">Disabled</a>
+               </li>-->
+        </ul>
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
+  <section class="">
+    <div class="container"><h1 class="text-center">Découvrez notre entrepôt</h1>
+      <div class="text-center mb-3">
+        <h3>Regarder les annonces - Déposer votre annonce - Un acheteur vous trouvera</h3>
+        <h4>Faites confiance à un site reconnu et sécurisé!</h4>
+        <h5>L'entrepôt du net est une marque du groupe "Le mauvais coin"...</h5>
+        <button class="subbutt" onclick="location.href='#lapin'"><p class="Penvoie">Plus<br><span class="p-4">d'infos</span></p></button>
+      </div>
+    </div>
+  </section>

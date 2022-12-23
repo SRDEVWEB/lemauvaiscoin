@@ -21,10 +21,18 @@ use Symfony\Component\Routing\Annotation\Route;
 class DefaultController extends AbstractController
 {
     #[Route('/', name: 'app.home')]
-    public function index(): Response
+    public function index( ExampleService $exampleService,
+                           AddsService $adds,
+                           int $id=1,): Response
     {
+        $seller = $exampleService->getSeller();
+        $add = $adds->getAdds();
+
         return $this->render('default/index.html.twig', [
             'controller_name' => 'DefaultController',
+            'seller' => $seller,
+            'add' => $add,
+            'id' => $id
         ]);
     }
 
@@ -33,6 +41,7 @@ class DefaultController extends AbstractController
                                Request $request,UserPasswordHasherInterface $passwordHasher,
     ): Response
     {
+
         $compte= new Owner();
         $compte->setVisible('1');
         $compte->setRoles(["ROLE_USER"]);

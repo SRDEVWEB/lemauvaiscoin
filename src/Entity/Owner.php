@@ -13,6 +13,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 #[ORM\Entity(repositoryClass: OwnerRepository::class)]
 #[UniqueEntity(fields: ['email'], message: 'Il y a déjà un compte avec cette adresse mail')]
+#[UniqueEntity(fields: ['email'], message: 'There is already an account with this email')]
 
 class Owner implements UserInterface, PasswordAuthenticatedUserInterface
 {

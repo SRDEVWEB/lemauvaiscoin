@@ -33,7 +33,24 @@
 
         <div class="w-100">
             <div class="bg-warning text-black-50 p-4 m-4 rounded-2 shadow">
-                {{ form(form) }}
+{#                {{ form(form) }}#}
+                {{ form_start(form) }}
+                <div class="bg-danger w-50">
+                    {{ form_row(form.prix) }}
+                </div>
+
+                {{ form_row(form.commentaires) }}
+                {{ form_row(form.description) }}
+                {{ form_row(form.couleur) }}
+                {{ form_row(form.poids) }}
+                {{ form_row(form.hauteur) }}
+                {{ form_row(form.largeur) }}
+                {{ form_row(form.profondeur) }}
+                {{ form_row(form.dimensions) }}
+                {{ form_row(form.produit) }}
+                {{ form_row(form.img) }}
+                {{ form_row(form.categorie) }}
+                {{ form_end(form) }}
             </div>
 
         </div>

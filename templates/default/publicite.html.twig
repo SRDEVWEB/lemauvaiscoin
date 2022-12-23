@@ -1,0 +1,21 @@
+<p class="detailspub">Sponsorisé</p>
+<div class="blob p-4">
+            <div class="marque">
+                {{ add.marque }}
+            </div>
+            <div class="produit">
+                {{ add.produit }}
+            </div>
+            <div class="categorie">
+                Categorie : {{ add.categorie }}
+            </div>
+
+            {% if add.img == false %}
+                    <div class="imgprod text-white">
+                        {{ add.text }}
+                    </div>
+            {% else %}
+                    <img class="imgprod" src="{{ asset('img/' ~ add.img ) }}" width="150" height="150"
+                         alt="{{ add.marque }}">
+            {% endif %}
+</div>
