@@ -20,6 +20,7 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class DefaultController extends AbstractController
 {
+//    Page d'accueil'
     #[Route('/', name: 'app.home')]
     public function index( ExampleService $exampleService,
                            AddsService $adds,
@@ -38,7 +39,8 @@ class DefaultController extends AbstractController
 
     #[Route('/compte', name: 'new_compte')]
     public function addCompte( EntityManagerInterface $em,
-                               Request $request,UserPasswordHasherInterface $passwordHasher,
+                               Request $request,UserPasswordHasherInterface $passwordHasher, ExampleService $exampleService,
+                               AddsService $adds,
     ): Response
     {
 
@@ -48,6 +50,7 @@ class DefaultController extends AbstractController
 
         $form=$this->createForm(AddCompteType::class,$compte);
         $form->handleRequest($request);
+        $add = $adds->getAdds();
 
         if($form->isSubmitted() && $form->isValid()) {
             $plaintextPassword =$form->get('password2')->getData();
@@ -65,6 +68,7 @@ class DefaultController extends AbstractController
         }
         return $this->renderForm('compte/index.html.twig', [
             'formCompte'=>$form,
+            'add' => $add,
             'controller_name' => 'Créer un compte'
         ]);
     }

@@ -182,5 +182,11 @@ color:var(--color-white);
 
 }
 
+.margprod{
+  padding-left: 25%;
+}
 /*# sourceMappingURL=stylou.css.map */
 
+.margcate{
+  margin-top: 5%;
+}

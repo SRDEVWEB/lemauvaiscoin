@@ -5,13 +5,21 @@
             <h5 class="text-center">Plan du site</h5>
             <div class="border m-2 p-3 rounded-2">
                 <ul class="list-unstyled">
-                    <li><a class="btn btn-default" href="index.php">Accueil</a></li>
-                    <li><a class="btn btn-default" href="recherche.php">Recherche</a></li>
-                    <li><a class="btn btn-default" href="class.php">Mon compte</a></li>
-                    <li><a class="btn btn-default" href="class.php">Mes annonces</a></li>
-                    <li><a class="btn btn-default" href="class.php">Mon panier</a></li>
-                    <li><a class="btn btn-default" href="class.php">Mes achats en cours</a></li>
-                    <li><a class="btn btn-default" href="class.php">Créer un compte</a> / <a class="btn btn-default" href="class.php">Se connecter</a></li></ul>
+                    <li><a class="btn btn-default" href="{{ path('app.home') }}">Accueil</a></li>
+                    <li><a class="btn btn-default" href="{{ path('new_compte') }}">Recherche</a></li>
+{#                    <li><a class="btn btn-default" href="{{ path('mon_compte') }}">Mon compte</a></li>#}
+                    <li><a class="btn btn-default" href="{{ path('new_compte') }}">Mes annonces</a></li>
+                    <li><a class="btn btn-default" href="{{ path('new_annonce') }}">Ajouter une annonce</a></li>
+                    <li><a class="btn btn-default" href="{{ path('new_compte') }}">Mon panier</a></li>
+                    <li><a class="btn btn-default" href="{{ path('new_compte') }}">Mes achats en cours</a></li>
+                    <li><a class="btn btn-default" href="{{ path('new_compte') }}">Créer un compte</a>/
+                        {% if is_granted('ROLE_USER') or is_granted('ROLE_ADMIN') %}
+                            <a class="nav-link" href="{{ path('app.logout') }}">Déconnexion</a>
+                        {% else %}
+                            <a class="nav-link" href="{{ path('app.login') }}">Se connecter</a>
+                        {% endif %}
+
+{#                        <a class="btn btn-default" href="{{ path('app.login') }}">Se connecter</a></li></ul>#}
             </div>
         </div>
         <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-3">

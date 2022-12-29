@@ -29,6 +29,7 @@ class AjoutAnnonceType extends AbstractType
             ->add('img')
             ->add('categorie')
             ->add('owner')
+
         ;
     }
 

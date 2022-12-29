@@ -5,6 +5,8 @@ namespace App\Controller;
 use App\Entity\Annonce;
 use App\Entity\Owner;
 use App\Form\AddType;
+use App\services\AddsService;
+use App\services\ExampleService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -24,8 +26,10 @@ class AnnonceController extends AbstractController
 
     #[Route('/annonce/new', name: 'new_annonce')]
     public function addannonce( EntityManagerInterface $em,
-                                Request $request,
+                                Request $request, ExampleService $exampleService,
+                                AddsService $adds
     ): Response {
+        $add = $adds->getAdds();
         $user = $this->getUser();
         if (!$user instanceof Owner) {
             throw new AccessDeniedHttpException('Vous devez êtes connecté!');
@@ -54,6 +58,7 @@ $annonce->setDimensions('0');
             $em->flush();
         }
         return $this->renderForm('annonce/index.html.twig',[
+            'add' => $add,
             'form'=> $form,
             "controller_name"=>"Ajouter une nouvelle annonce"
         ]);

@@ -22,26 +22,29 @@
                         {{ error.messageKey|trans(error.messageData, 'security') }}
                     </div>
                 {% endif %}
-                <div class="bg-warning text-black-50 p-4 m-4 rounded-2 shadow">
+                <div class="blob w-100 h-auto m-1 p-4 shadow">
+
+{#                <div class=" text-black-50 p-4 m-4 rounded-2 shadow">#}
                 <form action="{{ path('app.login') }}" method="post">
                     <input type="hidden"
                            value="{{ csrf_token('authenticate') }}"
                            name="_csrf_token">
-                    <div class="form__wrapper">
-                        <div class="mb-3">
-                            <label for="loginusername" class="form-label">Mon e-mail</label>
-                            <input type="email" class="form-control" id="loginusername"
+                    <div class="form__wrapper p-4">
+                        <div class="mb-3 p-4">
+                            <label for="loginusername" class="form-label m-1 p-2">Mon e-mail</label>
+                            <input type="email" class="form-control w-100" id="loginusername"
                                     name="_username"
                                    placeholder="name@example.com">
                         </div>
-                        <div class="mb-3">
-                            <label for="loginpwd" class="form-label">Mon mot de passe</label>
-                            <input type="password" class="form-control" name="_password" id="loginpwd">
+                        <div class="mb-4">
+                            <label for="loginpwd" class="form-label m-1">Mon mot de passe</label>
+                            <input type="password" class="form-control w-100" name="_password" id="loginpwd">
                         </div>
-                        <div class="col-12">
-                            <button class="btn btn-primary" type="submit">Se connecter 🙈🙉🙊</button>
+                            <div class="text-center">
+                            <button class="subbutt" type="submit"><p class="Penvoie m-1">Se connecter</p></button>
                         </div>
                     </div>
+
                 </form>
                 </div>
             </div>

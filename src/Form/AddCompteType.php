@@ -31,7 +31,7 @@ class AddCompteType extends AbstractType
             ->add('password',PasswordType::class)
             ->add('password2', PasswordType::class,["mapped"=> false])
             //->add('roles')
-            ->add('Envoyer', SubmitType::class,["label"=>"Valider 🙈🙉🙊"])
+//            ->add('Envoyer', SubmitType::class,["label"=>"Valider"])
         ;
     }
 

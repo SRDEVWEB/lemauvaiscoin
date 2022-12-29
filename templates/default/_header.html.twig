@@ -1,44 +1,42 @@
   <nav class="navbartop navbar navbar-expand-lg">
     <div class="c container-fluid">
-      <a class="a navbar-brand text-center" href="index.php"><h1>L'entrepôt<br>du net</h1></a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+
+      <a class="a navbar-brand text-center" href="{{ path('app.home') }}"><h1>L'entrepôt<br>du net</h1></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="hamburger navbar-toggler-icon rounded-5"></span>
       </button>
       <div class="b collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
           <li class="lia nav-item">
-            <a class="nav-link disabled">Menu : </a>
+            <a class="nav-link disabled" href="{{ path('app.home') }}">Menu : </a>
           </li>
           <li class="lia nav-item">
-            <a class="nav-link" href="class.php">Mon compte</a>
+            <a class="nav-link" href="{{ path('app.login') }}">Mon compte</a>
           </li>
           <li class="lia nav-item">
-            <a class="nav-link" href="class.php">Mes annonces</a>
+            <a class="nav-link" href="{{ path('new_annonce') }}">Ajouter une annonce</a>
           </li>
           <li class="lia nav-item">
-            <a class="nav-link" href="class.php">Mon panier</a>
+{#                        <a class="nav-link" href="{{ path('app_annonce') }}">Afficher les annonces</a>#}
           </li>
           <li class="lia nav-item">
-            <a class="nav-link" href="class.php">Mes recherches sauvegardées</a>
+{#            <a class="nav-link" href="{{ path('app.panier') }}">Mon panier</a>#}
           </li>
           <li class="lia nav-item">
-            <a class="nav-link" href="class.php">Mes achats en cours</a>
+{#            <a class="nav-link" href="{{ path('app.recherchesave') }}">Mes recherches sauvegardées</a>#}
           </li>
-          <!--<li class="lia nav-item">
-                 <a class="nav-link disabled">Disabled</a>
-               </li>
-               <li class="lia nav-item">
-                 <a class="nav-link disabled">Disabled</a>
-               </li>
-               <li class="lia nav-item">
-                 <a class="nav-link disabled">Disabled</a>
-               </li>
-               <li class="lia nav-item">
-                 <a class="nav-link disabled">Disabled</a>
-               </li>
-               <li class="lia nav-item">
-                 <a class="nav-link disabled">Disabled</a>
-               </li>-->
+          <li class="lia nav-item">
+{#            <a class="nav-link" href="{{ path('app.achatcours') }}">Mes achats en cours</a>#}
+          </li>
+          <li class="lia nav-item">
+            {% if is_granted('ROLE_USER') or is_granted('ROLE_ADMIN') %}
+            <a class="nav-link" href="{{ path('app.logout') }}">Se déconnecter</a>
+              {% else %}
+                <a class="nav-link" href="{{ path('app.login') }}">Se connecter</a>
+            {% endif %}
+
+          </li>
         </ul>
       </div>
     </div>
