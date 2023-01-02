@@ -2,9 +2,12 @@
 
 namespace App\Controller;
 
+use App\services\AnnonceService;
 use App\Entity\Annonce;
 use App\Entity\Owner;
 use App\Form\AddType;
+use App\Form\ListType;
+use App\Repository\AnnonceRepository;
 use App\services\AddsService;
 use App\services\ExampleService;
 use Doctrine\ORM\EntityManagerInterface;
@@ -19,18 +22,67 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class AnnonceController extends AbstractController
 {
-    #[Route('/annonce', name: 'app_annonce')]
-    public function index(): Response
+    #[Route('/annonce/list', name: 'app_annonce')]
+    #[Route('/annonce/list/{page}', name: 'app_annonce_page')]
+    public function index( EntityManagerInterface $em,
+                                Request $request,
+                                AddsService $adds, AnnonceRepository $annonceRepository, AnnonceService $annonceService, int $page = 1,
+    ): Response
     {
-        return $this->render('annonce/index.html.twig', [
+        $add = $adds->getAdds();
+
+//        $page = (int)$request->get('page', 1);
+
+        $limit = (int)$request->get('limit', 15);
+
+        $filters = [];
+
+        if ($request->get('query') !== null) {
+            $filters['query'] = $request->get('query');
+        }
+
+        if ($request->get('price_sup') !== null) {
+            $filters['price_sup'] = (int)$request->get('price_sup');
+        }
+
+        if ($request->get('price_inf') !== null) {
+            $filters['price_inf'] = (int)$request->get('price_inf');
+        }
+
+        try {
+            $annonces = $annonceService->getAnnonces($filters, [
+                'prix' => 'DESC',
+            ], $page, $limit);
+        } catch (\Throwable $e) {
+
+            if ($e->getCode() === 10) {
+                // page does not exists
+                throw $this->createNotFoundException('La page n\'existe pas !');
+            }
+
+            $annonces = [
+                'results' => [],
+                'count' => 0,
+                'totalPages' => 1,
+                'error' => $e->getMessage(),
+            ];
+        }
+
+        return $this->render('annonce/listAnnonces.html.twig', [
             'controller_name' => 'Annonces',
+            'add' => $add,
+// Fonctionne parfaitement: mais retiré de listAnnonces.html.twig pour coller à la demande de Florian
+//            'listAnnonceForm'=> $annonceRepository->findByExampleField(1),
+            'queryParams' => http_build_query($_GET),
+            'annonceQuery' => $annonces,
+            'actualPage' => $page,
         ]);
     }
 
     #[Route('/annonce/new', name: 'new_annonce')]
     public function addannonce( EntityManagerInterface $em,
                                 Request $request, ExampleService $exampleService,
-                                AddsService $adds, SluggerInterface $slugger
+                                AddsService $adds, SluggerInterface $slugger,
     ): Response {
         $add = $adds->getAdds();
         $user = $this->getUser();

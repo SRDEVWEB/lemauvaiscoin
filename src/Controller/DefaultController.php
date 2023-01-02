@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Annonce;
 use App\Entity\Owner;
 use App\FormCompte\AddCompteType;
+use App\Repository\AnnonceRepository;
 use App\services\AddsService;
 use App\services\CityService;
 use App\services\ExampleService;
@@ -24,7 +25,7 @@ class DefaultController extends AbstractController
     #[Route('/', name: 'app.home')]
     public function index( ExampleService $exampleService,
                            AddsService $adds,
-                           int $id=1,): Response
+                           AnnonceRepository $annonceRepository, int $id=1): Response
     {
         $seller = $exampleService->getSeller();
         $add = $adds->getAdds();
@@ -33,7 +34,9 @@ class DefaultController extends AbstractController
             'controller_name' => 'DefaultController',
             'seller' => $seller,
             'add' => $add,
-            'id' => $id
+            'id' => $id,
+            'listAnnonceForm'=> $annonceRepository->findLastDepot(1),
+            'queryParams' => http_build_query($_GET),
         ]);
     }
 

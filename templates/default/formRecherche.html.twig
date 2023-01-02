@@ -1,4 +1,4 @@
-<form action="recherche.php" method="POST">
+<form  method="GET" action="{{ path('app_annonce') }}? {{ queryParams }}">
     <div class="rowrecherche row rounded-4 m-1">
         <div class="col-8">
             <div class="collapsible-accordion">
@@ -7,13 +7,13 @@
                     <label class="collapsible-item-label" for="tab10">Trier des annonces par :</label>
                     <div class="collapsible-item-content">
                         <ul class="list-unstyled">
-                            <li><input type="radio" name="choixtri" id="choixtriDate" checked value="Date de dépôt" />
+                            <li><input type="radio" name="choixtri" id="choixtriDate" checked value="dat" />
                                 <label for="choixtriDate">Date de dépôt</label></li>
-                            <li><input type="radio" name="choixtri" id="choixtriVendeur" value="Vendeur" />
+                            <li><input type="radio" name="choixtri" id="choixtriVendeur" value="ven" />
                                 <label for="choixtriVendeur">Vendeur</label></li>
-                            <li><input type="radio" name="choixtri" id="choixtriProduit" value="Produit" />
+                            <li><input type="radio" name="choixtri" id="choixtriProduit" value="pro" />
                                 <label for="choixtriProduit">Produit</label></li>
-                            <li><input type="radio" name="choixtri" id="choixtriCategorie" value="Catégorie" />
+                            <li><input type="radio" name="choixtri" id="choixtriCategorie" value="cat" />
                                 <label for="choixtriCategorie">Catégorie</label></li>
                         </ul>
                     </div>
@@ -29,8 +29,8 @@
                     <input class="inputa" type="checkbox" id="tab11">
                     <label class="collapsible-item-label" for="tab11"><label for="recherchemot">Rechercher des annonces par mot-clé :</label></label>
                     <div class="collapsible-item-content">
-
-                        <input class="inputtxt" type="text" id="recherchemot" name="recherchemot" placeholder="Saisir votre choix!!!" >
+                        <input class="inputtxt" name="query" id="recherchemot" type="text">
+{#                        <input class="inputtxt" type="text" id="recherchemot" name="recherchemot" placeholder="Saisir votre choix!!!" >#}
                     </div>
                 </div>
             </div>
