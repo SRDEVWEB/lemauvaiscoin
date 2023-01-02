@@ -71,6 +71,9 @@ class Annonce
     #[ORM\ManyToOne(inversedBy: 'annonces')]
     private ?Owner $owner = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $imageFile = null;
+
 
 
     public function __construct()
@@ -297,6 +300,18 @@ class Annonce
     public function setOwner(?Owner $owner): self
     {
         $this->owner = $owner;
+
+        return $this;
+    }
+
+    public function getImageFile(): ?string
+    {
+        return $this->imageFile;
+    }
+
+    public function setImageFile(?string $imageFile): self
+    {
+        $this->imageFile = $imageFile;
 
         return $this;
     }

@@ -190,3 +190,8 @@ color:var(--color-white);
 .margcate{
   margin-top: 5%;
 }
+
+.formtxtbgcolor{
+  background-color: var(--color-secondary);
+text-decoration: var(--color-quaternary);
+}

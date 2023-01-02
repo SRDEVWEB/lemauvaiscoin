@@ -7,66 +7,64 @@
     <div class="espacepub col-12 col-sm-12 col-md-5 col-lg-4 col-xl-3 text-center">
         {% include "/default/publicite.html.twig" %}
     </div>
-
     <div class="col-12 col-sm-12 col-md-7 col-lg-8 col-xl-9">
-        <div class="blob h-100 w-100 p-4">
-            <h1>Créer un compte 👻</h1>
+        <div class="formtxtbgcolor h-100 w-100 p-4 bg-dark text-warning">
+{#            blob#}
+            <h1>Créer un compte</h1>
 
 {#                <div class="text-black-50 p-4 m-4 rounded-circle text-center shadow">#}
-{#                    {{ form(formCompte) }}#}
+                    {{ form(formCompte) }}
 
-                    {{ form_start(formCompte) }}
-                    <div class="col-9 w-75 p-1 mx-4">
-                        {{ form_label(formCompte.name, 'Votre nom : ') }}
-                        {{ form_widget(formCompte.name, {'attr':{'class':'form-control'}}) }}
-                    </div>
+{#                    {{ form_start(formCompte) }}#}
+{#                    <div class="col-9 w-75 p-1 mx-4">#}
+{#                        {{ form_label(formCompte.name, 'Votre nom : ') }}#}
+{#                        {{ form_widget(formCompte.name, {'attr':{'class':'form-control'}}) }}#}
+{#                    </div>#}
 
-            <div class="col-9 w-75 p-1 mx-4">
-                {{ form_label(formCompte.first_name, 'Votre prénom : ') }}
-                {{ form_widget(formCompte.first_name, {'attr':{'class':'form-control'}}) }}
-            </div>
+{#            <div class="col-9 w-75 p-1 mx-4">#}
+{#                {{ form_label(formCompte.first_name, 'Votre prénom : ') }}#}
+{#                {{ form_widget(formCompte.first_name, {'attr':{'class':'form-control'}}) }}#}
+{#            </div>#}
 
-            <div class="col-9 w-75 p-1 mx-4">
-                {{ form_label(formCompte.adress1, 'Votre adresse : ') }}
-                {{ form_widget(formCompte.adress1, {'attr':{'class':'form-control'}}) }}
-            </div>
-            <div class="col-9 w-75 p-1 mx-4">
-                {{ form_label(formCompte.adress2, 'Suite de votre adresse : ') }}
-                {{ form_widget(formCompte.adress2, {'attr':{'class':'form-control'}}) }}
-            </div>
-            <div class="col-9 w-75 p-1 mx-4">
-                {{ form_label(formCompte.code_postal, 'Code postal : ') }}
-                {{ form_widget(formCompte.code_postal, {'attr':{'class':'form-control'}}) }}
-            </div>
-            <div class="col-9 w-75 p-1 mx-4">
-                {{ form_label(formCompte.city, 'Ville : ') }}
-                {{ form_widget(formCompte.city, {'attr':{'class':'form-control'}}) }}
-            </div>
-            <div class="col-9 w-75 p-1 mx-4">
-                {{ form_label(formCompte.tel, 'Votre téléphone : ') }}
-                {{ form_widget(formCompte.tel, {'attr':{'class':'form-control'}}) }}
-            </div>
-            <div class="col-9 w-75 p-1 mx-4">
-                {{ form_label(formCompte.email, 'Votre email : ') }}
-                {{ form_widget(formCompte.email, {'attr':{'class':'form-control'}}) }}
-            </div>
-            <div class="col-9 w-75 p-1 mx-4">
-                {{ form_label(formCompte.password, 'Votre mot de passe : ') }}
-                {{ form_widget(formCompte.password, {'attr':{'class':'form-control'}}) }}
-            </div>
-            <div class="col-9 w-75 p-1 mx-4">
-                {{ form_label(formCompte.password2, 'Saisisez votre mot de passe à nouveau : ') }}
-                {{ form_widget(formCompte.password2, {'attr':{'class':'form-control'}}) }}
-            </div>
+{#            <div class="col-9 w-75 p-1 mx-4">#}
+{#                {{ form_label(formCompte.adress1, 'Votre adresse : ') }}#}
+{#                {{ form_widget(formCompte.adress1, {'attr':{'class':'form-control'}}) }}#}
+{#            </div>#}
+{#            <div class="col-9 w-75 p-1 mx-4">#}
+{#                {{ form_label(formCompte.adress2, 'Suite de votre adresse : ') }}#}
+{#                {{ form_widget(formCompte.adress2, {'attr':{'class':'form-control'}}) }}#}
+{#            </div>#}
+{#            <div class="col-9 w-75 p-1 mx-4">#}
+{#                {{ form_label(formCompte.code_postal, 'Code postal : ') }}#}
+{#                {{ form_widget(formCompte.code_postal, {'attr':{'class':'form-control'}}) }}#}
+{#            </div>#}
+{#            <div class="col-9 w-75 p-1 mx-4">#}
+{#                {{ form_label(formCompte.city, 'Ville : ') }}#}
+{#                {{ form_widget(formCompte.city, {'attr':{'class':'form-control'}}) }}#}
+{#            </div>#}
+{#            <div class="col-9 w-75 p-1 mx-4">#}
+{#                {{ form_label(formCompte.tel, 'Votre téléphone : ') }}#}
+{#                {{ form_widget(formCompte.tel, {'attr':{'class':'form-control'}}) }}#}
+{#            </div>#}
+{#            <div class="col-9 w-75 p-1 mx-4">#}
+{#                {{ form_label(formCompte.email, 'Votre email : ') }}#}
+{#                {{ form_widget(formCompte.email, {'attr':{'class':'form-control'}}) }}#}
+{#            </div>#}
+{#            <div class="col-9 w-75 p-1 mx-4">#}
+{#                {{ form_label(formCompte.password, 'Votre mot de passe : ') }}#}
+{#                {{ form_widget(formCompte.password, {'attr':{'class':'form-control'}}) }}#}
+{#            </div>#}
+{#            <div class="col-9 w-75 p-1 mx-4">#}
+{#                {{ form_label(formCompte.password2, 'Saisisez votre mot de passe à nouveau : ') }}#}
+{#                {{ form_widget(formCompte.password2, {'attr':{'class':'form-control'}}) }}#}
+{#            </div>#}
 
+{#                    <div class="text-center">#}
+{#                        <button class="subbutt" type="submit"><p class="Penvoie m-1"> Envoyer </p></button>#}
+{#                    </div>#}
+{#                    {{ form_end(formCompte) }}#}
 
-
-                    <div class="text-center">
-                        <button class="subbutt" type="submit"><p class="Penvoie m-1"> Envoyer </p></button>
-                    </div>
-                    {{ form_end(formCompte) }}
-
-                    {#                </div>#}
+{#                                    </div>#}
         </div>
         <br>
     </div>
