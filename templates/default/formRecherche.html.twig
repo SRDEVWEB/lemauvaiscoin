@@ -1,39 +1,90 @@
 <form  method="GET" action="{{ path('app_annonce') }}? {{ queryParams }}">
-    <div class="rowrecherche row rounded-4 m-1">
-        <div class="col-8">
-            <div class="collapsible-accordion">
-                <div class="collapsible-item">
-                    <input class="inputa" type="checkbox" id="tab10">
-                    <label class="collapsible-item-label" for="tab10">Trier des annonces par :</label>
-                    <div class="collapsible-item-content">
-                        <ul class="list-unstyled">
-                            <li><input type="radio" name="choixtri" id="choixtriDate" checked value="dat" />
-                                <label for="choixtriDate">Date de dépôt</label></li>
-                            <li><input type="radio" name="choixtri" id="choixtriVendeur" value="ven" />
-                                <label for="choixtriVendeur">Vendeur</label></li>
-                            <li><input type="radio" name="choixtri" id="choixtriProduit" value="pro" />
-                                <label for="choixtriProduit">Produit</label></li>
-                            <li><input type="radio" name="choixtri" id="choixtriCategorie" value="cat" />
-                                <label for="choixtriCategorie">Catégorie</label></li>
-                        </ul>
+        {%  if queryParams is not empty %}
+
+            <div class="w-50">
+                {%  if app.request.query.get('query') is not empty %}
+                    - Filtre(s) :{{ app.request.query.get('query') }}
+                {% endif %}
+
+                {%  if app.request.query.get('choixtri') is not empty %}
+                    - Tri par : {{ app.request.query.get('choixtri') }}
+                {% endif %}
+
+            </div>
+        {% endif %}
+        <div class="rowrecherche row rounded-4 m-1">
+            <div class="col-8">
+                <div class="collapsible-accordion">
+                    <div class="collapsible-item">
+                        <input class="inputa" type="checkbox" id="tab10">
+                        <label class="collapsible-item-label" for="tab10">Trier des annonces par :</label>
+                        <div class="collapsible-item-content">
+                            <ul class="list-unstyled">
+                                {%  if (app.request.query.get('choixtri') == 'dat') or (app.request.attributes.get("_route") =='app.home') %}
+                                <li><input type="radio" name="choixtri" id="choixtriDate" checked value="dat" />
+                            {% else %}
+                                <li><input type="radio" name="choixtri" id="choixtriDate" value="dat" />
+                                    {% endif %}
+                                    <label for="choixtriDate">Date de dépôt</label></li>
+
+                                {%  if app.request.query.get('choixtri') == 'ven' %}
+                                <li><input type="radio" name="choixtri" id="choixtriVendeur" checked value="ven" />
+                            {% else %}
+                                <li><input type="radio" name="choixtri" id="choixtriVendeur" value="ven" />
+                                    {% endif %}
+                                    <label for="choixtriVendeur">Vendeur</label></li>
+
+                                {%  if app.request.query.get('choixtri') =='pro' %}
+                                <li><input type="radio" name="choixtri" id="choixtriProduit" checked value="pro" />
+                            {% else %}
+                                <li><input type="radio" name="choixtri" id="choixtriProduit" value="pro" />
+                                    {% endif %}
+                                    <label for="choixtriProduit">Produit</label></li>
+
+                                {%  if app.request.query.get('choixtri') =='cat' %}
+                                <li><input type="radio" name="choixtri" id="choixtriCategorie" checked value="cat" />
+                            {% else %}
+                                <li><input type="radio" name="choixtri" id="choixtriCategorie" value="cat" />
+                                    {% endif %}
+                                    <label for="choixtriCategorie">Catégorie</label></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <button class="subbutt" type="submit"><p class="Penvoie m-1">Envoyer</p></button>
+                <button class="bg-secondary rounded-circle"><a class="text-decoration-none text-white" href="{{ path('app_annonce') }}">♻</a></button>
+            </div>
+            <div class="col-12">
+                <div class="collapsible-accordion">
+                    <div class="collapsible-item">
+                        <input class="inputa" type="checkbox" id="tab11">
+                        <label class="collapsible-item-label" for="tab11"><label for="recherchemot">Rechercher des annonces par mot-clé :</label></label>
+                        <div class="collapsible-item-content">
+                            {%  if app.request.query.get('query') is not empty %}
+                                <input class="inputtxt" name="query" id="recherchemot" value="{{ app.request.query.get('query') }}" type="text">
+                            {% else %}
+                                <input class="inputtxt" name="query" type="text" value="">
+                            {% endif %}
+
+                            <li><label for="choixtriCategorie">prix supérieur</label></li>
+                            {%  if app.request.query.get('price_sup') is not empty %}
+                            <input class="inputtxt" name="price_sup" id="recherchemot" value="{{ app.request.query.get('price_sup') }}" type="text">
+                            {% else %}
+                                <input class="inputtxt" name="price_sup" id="recherchemot" value="" type="text">
+                            {% endif %}
+
+                            <li><label for="choixtriCategorie">prix inférieur</label></li>
+                            {%  if app.request.query.get('price_inf') is not empty %}
+                                <input class="inputtxt" name="price_inf" id="recherchemot" value="{{ app.request.query.get('price_inf') }}" type="text">
+                            {% else %}
+                                <input class="inputtxt" name="price_inf" id="recherchemot" value="" type="text">
+                            {% endif %}
+
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-4">
-            <button class="subbutt" type="submit"><p class="Penvoie m-1">Envoyer</p></button>
-        </div>
-        <div class="col-12">
-            <div class="collapsible-accordion">
-                <div class="collapsible-item">
-                    <input class="inputa" type="checkbox" id="tab11">
-                    <label class="collapsible-item-label" for="tab11"><label for="recherchemot">Rechercher des annonces par mot-clé :</label></label>
-                    <div class="collapsible-item-content">
-                        <input class="inputtxt" name="query" id="recherchemot" type="text">
-{#                        <input class="inputtxt" type="text" id="recherchemot" name="recherchemot" placeholder="Saisir votre choix!!!" >#}
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 </form>

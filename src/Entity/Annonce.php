@@ -21,7 +21,7 @@ class Annonce
     private ?int $id = null;
 
     #[ORM\ManyToMany(targetEntity: Produit::class, inversedBy: 'annonces')]
-    private Collection $produit;
+    private ?Collection $produit;
 
     #[ORM\ManyToOne(inversedBy: 'categorie')]
     private ?Img $img = null;
@@ -73,8 +73,6 @@ class Annonce
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $imageFile = null;
-
-
 
     public function __construct()
     {

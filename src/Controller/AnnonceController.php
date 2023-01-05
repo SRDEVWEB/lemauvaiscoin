@@ -65,6 +65,7 @@ class AnnonceController extends AbstractController
                 'count' => 0,
                 'totalPages' => 1,
                 'error' => $e->getMessage(),
+                'name' => "Lapinou",
             ];
         }
 

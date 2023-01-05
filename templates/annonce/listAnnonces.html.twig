@@ -42,17 +42,21 @@
             <div class="rowrecherche row rounded-4 m-1">
 <h1>LISTE DES ANNONCES</h1>
 {#{{ form(listAnnonceForm) }}#}
-            <form method="GET" action="{{ path('app_annonce') }}?{{ queryParams }}">
-            {% if queryParams !="query=" %}
 
-                <input class="inputtxt" name="query" type="text" value="{{ queryParams[6:20] }}" required>
-            {% else %}
-                <input class="inputtxt name="query" type="text" required>
-            {% endif %}
-                <button class="subbutt"><p class="Penvoie m-1">Envoyer</p></button>
+
+                {% include "default/formRecherche.html.twig" %}
+
+
+                {#                Fin Form de recherche #2#}
+
+                {#                Début Form de recherche #1#}
+
+{#                <input class="inputtxt" name="query" type="text" value="{{ app.request.query.get('query') }}" required>#}
+
+{#                <button class="subbutt"><p class="Penvoie m-1">Envoyer</p></button>#}
 {#                Gestion error si trouve pas!!!#}
-                <button class="bg-secondary rounded-circle"><a class="text-decoration-none text-white" href="{{ path('app_annonce') }}">♻</a></button>
-            </form>
+{#                <button class="bg-secondary rounded-circle"><a class="text-decoration-none text-white" href="{{ path('app_annonce') }}">♻</a></button>#}
+{#            </form>#}
 
             <div class="w-100 small text-dark p-3">
                 il y a <b class="text-white">{{ annonceQuery.count }} annonces</b> dans vos critères.
@@ -62,9 +66,11 @@
             <div class="col-12 mb-2 text-center small p-2">
                 Aucune annonce trouvée 😔
             </div>
-
             {% else %}
             </div>
+
+            {#                Fin Form de recherche #1#}
+
             {% for annonce in annonceQuery.results %}
 
 {#            Nettoyer ads.display.simple pour afficher l'annonce par retour de l'id#}
@@ -91,12 +97,14 @@
                 {#Fin de la mise en forme 1 #}
 
 {#Début de la mise en forme 2 #}
+{#                {{ dump(annonce) }}#}
+
                 <div class="row">
                     <div class="col-4"><div class="blobimg text-center"><img class="imgprod" src="{{ annonce.imageFile }}" alt="photo du produit!"></div></div>
                     <div class="col-8">
                         <div class="row h-50"><div class="col-6 text-white">Date de dépôt : <span><h3>{{ annonce.dateDepot|date("d/m/Y")  }}</h3></span></div><div class="catcolor col-6">Catégorie : <span><h4>{{ annonce.categorie }}</h4></span></div>
                         </div>
-                        <div class="row h-25"><div class="col-12"></div><span><h1 class="blob4 p-2">Grrr autre table!!!</h1></span></div>
+                        <div class="row h-25"><div class="col-12"></div><span><h1 class="blob4 p-2">ghjggjhgjgjhjhg</h1></span></div>
                         <div class="row h-25"><div class="col-12"></div><span><h1 class="blob5">{{ annonce.prix }}€</h1></span></div>
                     </div>
 
