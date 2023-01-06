@@ -45,6 +45,11 @@ class AnnonceService
                 ->setParameter('query', '%'.$filters['query'].'%');
         }
 
+        if (isset($filters['in_categories'])) {
+            $qb->andWhere('a.category IN (:categorie)')
+                ->setParameter('categorie', $filters['in_categories']);
+        }
+
         if (isset($filters['price_sup'])) {
             $qb->andWhere('a.prix >= :pricesup')
                 ->setParameter('pricesup', $filters['price_sup']);
@@ -57,6 +62,10 @@ class AnnonceService
 
         if (isset($order['prix'])) {
             $qb->orderBy('a.prix', $order['prix']);
+        }
+
+        if (isset($order['date_depot'])) {
+            $qb->orderBy('a.date_depot', $order['date_depot']);
         }
 
         $qbCount = clone $qb;

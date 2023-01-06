@@ -37,7 +37,7 @@ class AddType extends AbstractType
                 'attr'=>['placeholder'=>'0']])
             ->add('dimensions', \Symfony\Component\Form\Extension\Core\Type\TextType::class,[
                 'attr'=>['placeholder'=>'0']])
-            ->add('produit_id')
+            ->add('produit')
             ->add('img')
             ->add('image', FileType::class, [
                 'label' => 'Photo du produit',

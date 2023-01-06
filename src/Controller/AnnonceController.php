@@ -9,6 +9,7 @@ use App\Form\AddType;
 use App\Form\ListType;
 use App\Repository\AnnonceRepository;
 use App\services\AddsService;
+use App\services\CategoryService;
 use App\services\ExampleService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -26,7 +27,7 @@ class AnnonceController extends AbstractController
     #[Route('/annonce/list/{page}', name: 'app_annonce_page')]
     public function index( EntityManagerInterface $em,
                                 Request $request,
-                                AddsService $adds, AnnonceRepository $annonceRepository, AnnonceService $annonceService, int $page = 1,
+                                AddsService $adds, AnnonceRepository $annonceRepository, AnnonceService $annonceService, CategoryService $categoryService, int $page = 1,
     ): Response
     {
         $add = $adds->getAdds();
@@ -86,7 +87,7 @@ class AnnonceController extends AbstractController
             'queryParams' => http_build_query($_GET),
             'annonceQuery' => $annonces,
             'actualPage' => $page,
-            'categories' => $categoryService->getAllCategories(),
+            'categorie' => $categoryService->getAllCategories(),
         ]);
     }
 

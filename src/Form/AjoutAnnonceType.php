@@ -25,7 +25,7 @@ class AjoutAnnonceType extends AbstractType
             ->add('largeur')
             ->add('profondeur')
             ->add('dimensions')
-            ->add('produit_id')
+            ->add('produit')
             ->add('img')
             ->add('categorie')
             ->add('owner')

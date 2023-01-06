@@ -74,6 +74,8 @@ class Annonce
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $imageFile = null;
 
+    #[ORM\OneToMany(mappedBy: 'parent', targetEntity: AnnonceAttribute::class)]
+    private Collection $attributes;
 
 
     public function __construct()
@@ -81,6 +83,7 @@ class Annonce
 //        $this->produit = new ArrayCollection();
         $this->dateDepot= new DateTime();
         $this->dateUpdate= new DateTime();
+        $this->attributes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -96,21 +99,21 @@ class Annonce
 //        return $this->produit;
 //    }
 
-    public function addProduit(Produit $produit): self
-    {
-        if (!$this->produit->contains($produit)) {
-            $this->produit->add($produit);
-        }
-
-        return $this;
-    }
-
-    public function removeProduit(Produit $produit): self
-    {
-        $this->produit->removeElement($produit);
-
-        return $this;
-    }
+//    public function addProduit(Produit $produit): self
+//    {
+//        if (!$this->produit->contains($produit)) {
+//            $this->produit->add($produit);
+//        }
+//
+//        return $this;
+//    }
+//
+//    public function removeProduit(Produit $produit): self
+//    {
+//        $this->produit->removeElement($produit);
+//
+//        return $this;
+//    }
 
     public function getImg(): ?Img
     {
@@ -316,18 +319,35 @@ class Annonce
         return $this;
     }
 
-    public function getProduitId(): ?Produit
+    public function getProduit(): ?Produit
     {
         return $this->produit;
     }
 
-    public function setProduitId(?Produit $produit): self
+    public function setProduit(?Produit $produit): self
     {
         $this->produit = $produit;
 
         return $this;
     }
 
+
+    /**
+     * @return Collection<int, AnnonceAttribute>
+     */
+    public function getAttributes(): Collection
+    {
+        return $this->attributes;
+    }
+
+    public function addAttribute(AnnonceAttribute $attribute): self
+    {
+        if (!$this->attributes->contains($attribute)) {
+            $this->attributes->add($attribute);
+        }
+
+        return $this;
+    }
 
 
 
