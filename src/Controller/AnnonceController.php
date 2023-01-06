@@ -42,9 +42,9 @@ class AnnonceController extends AbstractController
             $filters['query'] = $request->get('query');
         }
 
-        if ($request->get('categories') !== null && is_array($request->get('categories'))) {
+        if ($request->get('categorie') !== null && is_array($request->get('categorie'))) {
 
-            $filters['in_categories'] = $request->get('categories');
+            $filters['in_categorie'] = $request->get('categorie');
         }
 
         if ($request->get('price_sup') !== null) {
@@ -56,7 +56,7 @@ class AnnonceController extends AbstractController
         }
 
         $order = [];
-        $allowedOrder = ['prix', 'date_depot', 'categorie_id'];
+        $allowedOrder = ['prix', 'date_depot', 'categorie', 'produit'];
         if ($request->get('order') !== null && str_contains($request->get('order'), ',')) {
             $o_ = explode(',', $request->get('order'));
             if (in_array($o_[0], $allowedOrder, true)) {

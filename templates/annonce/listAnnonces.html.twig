@@ -23,8 +23,8 @@
         <div class="w-100">
             <form id="filters">
                 <div class="form-row w-100 mb-2">
-                    <label for="categories" class="form-label">Catégories</label>
-                    <select name="categories"
+                    <label for="categorie" class="form-label">Catégories</label>
+                    <select name="categorie"
                             multiple class="form-select unselect-on-null" id="categorie">
                         <option value="null" {% if app.request.get('categorie', null) == null %} selected {% endif %}>
                             Tous le site
@@ -68,13 +68,13 @@
                                 class="form-select" id="order">
                             <option value="">Par id</option>
                             <option {% if app.request.get('order', '') == 'price,asc' %} selected {% endif %}
-                                    value="price,asc">Du moins cher au plus cher
+                                    value="prix,asc">Du moins cher au plus cher
                             </option>
                             <option {% if app.request.get('order', '') == 'price,desc' %} selected {% endif %}
-                                    value="price,desc">Du plus cher au moins cher
+                                    value="prix,desc">Du plus cher au moins cher
                             </option>
-                            <option value="postedDate,asc">Par date asc</option>
-                            <option value="postedDate,desc">Par date desc</option>
+                            <option value="date_depot,asc">Par date asc</option>
+                            <option value="date_depot,desc">Par date desc</option>
                         </select>
                     </div>
 
@@ -176,7 +176,6 @@
             })
         </script>
 
-
         <hr>
 
         <div class="w-100 small">
@@ -195,7 +194,7 @@
                             <div class="card-body">
                                 <div class="d-flex align-item-center justify-content-between">
                                     <div class="left">
-{#                                        {{ annonce.title }}#}
+                                        {{ annonce.produit }}
                                     </div>
                                     <div class="right">
                                         {{ annonce.prix }}€
@@ -206,6 +205,9 @@
                                 </div>
                                 <div class="small text-muted">
                                     {{ annonce.datedepot|date("Y-m-d") }}
+                                </div>
+                                <div class="small text-muted text-center border border-info rounded-circle">
+                                    {{ annonce.categorie }}
                                 </div>
                             </div>
                         </a>

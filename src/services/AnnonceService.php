@@ -38,16 +38,16 @@ class AnnonceService
             ->from(Annonce::class, 'a')
             ->where('1 = 1');
 
-
         if (isset($filters['query'])) {
             $qb->andWhere('a.commentaires LIKE :query')
                 ->orWhere('a.description LIKE :query')
                 ->setParameter('query', '%'.$filters['query'].'%');
         }
 
-        if (isset($filters['in_categories'])) {
-            $qb->andWhere('a.category IN (:categorie)')
-                ->setParameter('categorie', $filters['in_categories']);
+        if (isset($filters['in_categorie'])) {
+            $qb->andWhere('a.categorie IN (:categorie)')
+                ->setParameter('categorie', $filters['in_categorie']);
+//            dump('filter',$filters['in_categorie']);die;
         }
 
         if (isset($filters['price_sup'])) {

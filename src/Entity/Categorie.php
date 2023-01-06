@@ -25,12 +25,12 @@ class Categorie
     private Collection $publicites;
 
     #[ORM\OneToMany(mappedBy: 'categorie', targetEntity: Annonce::class)]
-    private Collection $dateDepot;
+    private Collection $annonces;
 
     public function __construct()
     {
         $this->publicites = new ArrayCollection();
-        $this->dateDepot = new ArrayCollection();
+        $this->annonces = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -95,27 +95,27 @@ class Categorie
     /**
      * @return Collection<int, Annonce>
      */
-    public function getDateDepot(): Collection
+    public function getAnnonces(): Collection
     {
-        return $this->dateDepot;
+        return $this->annonces;
     }
 
-    public function addDateDepot(Annonce $dateDepot): self
+    public function addAnnonce(Annonce $annonce): self
     {
-        if (!$this->dateDepot->contains($dateDepot)) {
-            $this->dateDepot->add($dateDepot);
-            $dateDepot->setCategorie($this);
+        if (!$this->annonces->contains($annonce)) {
+            $this->annonces->add($annonce);
+            $annonce->setCategorie($this);
         }
 
         return $this;
     }
 
-    public function removeDateDepot(Annonce $dateDepot): self
+    public function removeAnnonce(Annonce $annonce): self
     {
-        if ($this->dateDepot->removeElement($dateDepot)) {
+        if ($this->annonces->removeElement($annonce)) {
             // set the owning side to null (unless already changed)
-            if ($dateDepot->getCategorie() === $this) {
-                $dateDepot->setCategorie(null);
+            if ($annonce->getCategorie() === $this) {
+                $annonce->setCategorie(null);
             }
         }
 
