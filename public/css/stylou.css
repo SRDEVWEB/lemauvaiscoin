@@ -1,13 +1,13 @@
 @charset "UTF-8";
 
-:root {
-  --color-primary: #090909;
-  --color-secondary: #616365;
-  --color-tertiary: #a9aaab;
-  --color-quaternary:#e8c122;
-  --color-white: white;
-  --color-orange: pink;
-}
+/*:root {*/
+/*  --color-primary: #090909;*/
+/*  --color-secondary: #616365;*/
+/*  --color-tertiary: #a9aaab;*/
+/*  --color-quaternary:#e8c122;*/
+/*  --color-white: white;*/
+/*  --color-orange: pink;*/
+/*}*/
 
 .inputa {
   position: absolute;
@@ -21,7 +21,7 @@
   overflow: hidden;
   box-shadow: 0 4px 4px -2px rgba(0, 0, 0, 0.5);
 }
-* .collapsible-item-label {
+* .collapsible-item-label, .lapinette {
   display: flex;
   justify-content: space-between;
   padding: 1em;
@@ -68,6 +68,7 @@
   border: 1px dashed var(--color-secondary);
   width: 160px;
   margin-top: 8px;
+  margin-bottom: 8px;
   height: 100px;
     border-radius: 80px / 50px;
     text-align: center;
@@ -106,6 +107,7 @@
   .subbutt{
     color: var(--color-secondary);
     margin-top: 16px;
+    margin-bottom: 8px;
     padding: 2px;
     transform: rotate(40deg);
     width: 86px;

@@ -1,4 +1,21 @@
-<form  method="GET" action="{{ path('app_annonce') }}? {{ queryParams }}">
+<script>
+function myFunction()
+{
+var myForm = document.getElementById('form-id');
+var allInputs = myForm.getElementsByTagName('input');
+var input, i;
+console.log("OK-0");
+for(i = 0; input === allInputs[i]; i++) {
+console.log("OK-1");
+if(input.getAttribute('name') && !input.value) {
+console.log("OK-2");
+input.setAttribute('name', '');
+}
+}
+console.log("OK-3");
+}
+</script>
+<form id="form-id" onsubmit="myFunction()" method="GET" action="{{ path('app_annonce') }}? {{ queryParams }}" name="formulaire">
         {%  if queryParams is not empty %}
 
             <div class="w-50">
@@ -9,7 +26,6 @@
                 {%  if app.request.query.get('choixtri') is not empty %}
                     - Tri par : {{ app.request.query.get('choixtri') }}
                 {% endif %}
-
             </div>
         {% endif %}
         <div class="rowrecherche row rounded-4 m-1">
@@ -52,11 +68,13 @@
                     </div>
                 </div>
             </div>
-            <div class="col-4">
-                <button class="subbutt" type="submit"><p class="Penvoie m-1">Envoyer</p></button>
-                <button class="bg-secondary rounded-circle"><a class="text-decoration-none text-white" href="{{ path('app_annonce') }}">♻</a></button>
-            </div>
-            <div class="col-12">
+{#           Ici#}
+{#            <div class="col-4">#}
+{#                <button class="subbutt" type="submit"><p class="Penvoie m-1">Envoyer</p></button>#}
+{#                <button class="bg-secondary rounded-circle"><a class="text-decoration-none text-white" href="{{ path('app_annonce') }}">♻</a></button>#}
+{#            </div>#}
+
+            <div class="col-8">
                 <div class="collapsible-accordion">
                     <div class="collapsible-item">
                         <input class="inputa" type="checkbox" id="tab11">
@@ -85,6 +103,10 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <div class="col-4">
+                <button class="subbutt" type="submit"><p class="Penvoie m-1">Envoyer</p></button>
+                <button class="bg-secondary rounded-circle"><a class="text-decoration-none text-white" href="{{ path('app_annonce') }}">♻</a></button>
             </div>
         </div>
 </form>

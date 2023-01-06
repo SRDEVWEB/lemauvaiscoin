@@ -20,14 +20,14 @@ class Annonce
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\ManyToMany(targetEntity: Produit::class, inversedBy: 'annonces')]
-    private ?Collection $produit;
+    #[ORM\ManyToOne]
+    private ?Produit $produit = null;
 
-    #[ORM\ManyToOne(inversedBy: 'categorie')]
-    private ?Img $img = null;
-
-    #[ORM\ManyToOne(inversedBy: 'dateDepot')]
+    #[ORM\ManyToOne]
     private ?Categorie $categorie = null;
+
+    #[ORM\ManyToOne]
+    private ?Img $img = null;
 
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $dateDepot = null;
@@ -74,9 +74,11 @@ class Annonce
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $imageFile = null;
 
+
+
     public function __construct()
     {
-        $this->produit = new ArrayCollection();
+//        $this->produit = new ArrayCollection();
         $this->dateDepot= new DateTime();
         $this->dateUpdate= new DateTime();
     }
@@ -86,13 +88,13 @@ class Annonce
         return $this->id;
     }
 
-    /**
-     * @return Collection<int, Produit>
-     */
-    public function getProduit(): Collection
-    {
-        return $this->produit;
-    }
+//    /**
+//     * @return Collection<int, Produit>
+//     */
+//    public function getProduit(): Collection
+//    {
+//        return $this->produit;
+//    }
 
     public function addProduit(Produit $produit): self
     {
@@ -310,6 +312,18 @@ class Annonce
     public function setImageFile(?string $imageFile): self
     {
         $this->imageFile = $imageFile;
+
+        return $this;
+    }
+
+    public function getProduitId(): ?Produit
+    {
+        return $this->produit;
+    }
+
+    public function setProduitId(?Produit $produit): self
+    {
+        $this->produit = $produit;
 
         return $this;
     }

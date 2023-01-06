@@ -41,6 +41,11 @@ class AnnonceController extends AbstractController
             $filters['query'] = $request->get('query');
         }
 
+        if ($request->get('categories') !== null && is_array($request->get('categories'))) {
+
+            $filters['in_categories'] = $request->get('categories');
+        }
+
         if ($request->get('price_sup') !== null) {
             $filters['price_sup'] = (int)$request->get('price_sup');
         }
@@ -49,23 +54,27 @@ class AnnonceController extends AbstractController
             $filters['price_inf'] = (int)$request->get('price_inf');
         }
 
-        try {
-            $annonces = $annonceService->getAnnonces($filters, [
-                'prix' => 'DESC',
-            ], $page, $limit);
-        } catch (\Throwable $e) {
+        $order = [];
+        $allowedOrder = ['prix', 'date_depot', 'categorie_id'];
+        if ($request->get('order') !== null && str_contains($request->get('order'), ',')) {
+            $o_ = explode(',', $request->get('order'));
+            if (in_array($o_[0], $allowedOrder, true)) {
+                $order[$o_[0]] = strtoupper($o_[1]);
+            }
+        }
 
+        try {
+            $annonces = $annonceService->getAnnonces($filters, $order, $page, $limit);
+        } catch (\Throwable $e) {
             if ($e->getCode() === 10) {
                 // page does not exists
                 throw $this->createNotFoundException('La page n\'existe pas !');
             }
-
             $annonces = [
                 'results' => [],
                 'count' => 0,
                 'totalPages' => 1,
                 'error' => $e->getMessage(),
-                'name' => "Lapinou",
             ];
         }
 
@@ -77,6 +86,7 @@ class AnnonceController extends AbstractController
             'queryParams' => http_build_query($_GET),
             'annonceQuery' => $annonces,
             'actualPage' => $page,
+            'categories' => $categoryService->getAllCategories(),
         ]);
     }
 

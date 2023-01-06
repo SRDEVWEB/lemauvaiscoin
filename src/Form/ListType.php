@@ -26,7 +26,7 @@ class ListType extends AbstractType
             ->add('profondeur')
             ->add('dimensions')
             ->add('imageFile')
-            ->add('produit')
+            ->add('produit_id')
             ->add('img')
             ->add('categorie')
             ->add('owner')

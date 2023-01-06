@@ -72,7 +72,7 @@ background: linear-gradient(117deg, rgba(232,193,34,1) 0%, rgba(97,99,101,0) 65%
     color: var(--color-quaternary);
     letter-spacing: 2px;
     font-weight: bold;
-    text-shadow: 1px 3px 0 #969696, 1px 5px 5px #aba8a8, 10px 15px 10px rgba(169,170,171,0.5);
+    /*text-shadow: 1px 3px 0 #969696, 1px 5px 5px #aba8a8, 10px 15px 10px rgba(169,170,171,0.5);*/
     font-size: larger;
     padding-left: 15px;
 }
@@ -81,7 +81,7 @@ background: linear-gradient(117deg, rgba(232,193,34,1) 0%, rgba(97,99,101,0) 65%
     border-style:groove;
     border-radius: 5px;
     margin: 2px;
-    background-color: var(--color-tertiary);
+    background-color: var(--color-secondary);
 }
 
 .navbartop .a :hover{

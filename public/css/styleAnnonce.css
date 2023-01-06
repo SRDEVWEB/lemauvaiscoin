@@ -1,20 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Oxygen:wght@300;400;700&display=swap');
-body{
-    margin: 0;
-    padding: 0;
-    font-family: 'Quicksand', sans-serif;
-    /* font-family: 'Oxygen', sans-serif; */
-    }
-    
-    :root {
-        --color-primary: #090909;
-        --color-secondary: #616365;
-        --color-tertiary: #a9aaab;
-        --color-quaternary:#e8c122;
-        --color-white: white;
-        --color-orange: pink;
-      }
+/*body{*/
+/*    margin: 0;*/
+/*    padding: 0;*/
+/*    font-family: 'Quicksand', sans-serif;*/
+/*    !* font-family: 'Oxygen', sans-serif; *!*/
+/*    }*/
+/*    */
+/*    :root {*/
+/*        --color-primary: #090909;*/
+/*        --color-secondary: #616365;*/
+/*        --color-tertiary: #a9aaab;*/
+/*        --color-quaternary:#e8c122;*/
+/*        --color-white: white;*/
+/*        --color-orange: pink;*/
+/*      }*/
     
       .cardcontainer{
         height: 300px;

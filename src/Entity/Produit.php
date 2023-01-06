@@ -18,11 +18,12 @@ class Produit
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\ManyToMany(targetEntity: Publicite::class, mappedBy: 'Produit')]
+    #[ORM\OneToMany(targetEntity: Publicite::class, mappedBy: 'produit_id')]
     private Collection $publicites;
 
-    #[ORM\ManyToMany(targetEntity: Annonce::class, mappedBy: 'produit')]
+    #[ORM\OneToMany(targetEntity: Annonce::class, mappedBy: 'produit_id')]
     private Collection $annonces;
+
 
     public function __construct()
     {
