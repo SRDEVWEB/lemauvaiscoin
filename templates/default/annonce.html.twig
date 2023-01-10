@@ -1,8 +1,8 @@
 
 {% for listAnnoncesForm in listAnnonceForm %}
-{#    <a href="{{ path('ads.display.simple', {'id': annonce.id}) }}" class="rowrecherche row rounded-4 m-1 text-decoration-none text-warning p-2">#}
+    <a href="{{ path('ads.display.simple', {'id': listAnnoncesForm.id}) }}" class="row rounded-4 m-1 text-decoration-none text-warning p-2">
 <div class="row">
-    <div class="col-4"><div class="blobimg text-center"><img class="imgprod" src="{{ listAnnoncesForm.imageFile }}" alt="photo du produit!"></div></div>
+    <div class="col-4"><div class="blobimg text-center"><img class="imgprod img-fluid" src="{{asset('/img/produits/')}}{{listAnnoncesForm.imageFile}}" alt="photo du produit!"></div></div>
     <div class="col-8">
         <div class="row h-50"><div class="catcolor col-6">Catégorie : <span><h4>{{ listAnnoncesForm.categorie }}</h4></span></div>
         </div>
@@ -89,5 +89,5 @@
         </div>
     </div>
 
-{#    </a>#}
+    </a>
 {% endfor %}

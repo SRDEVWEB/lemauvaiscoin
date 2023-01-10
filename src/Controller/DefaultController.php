@@ -7,6 +7,8 @@ use App\Entity\Owner;
 use App\FormCompte\AddCompteType;
 use App\Repository\AnnonceRepository;
 use App\services\AddsService;
+use App\services\AnnonceService;
+use App\services\CategoryService;
 use App\services\CityService;
 use App\services\ExampleService;
 use Doctrine\ORM\EntityManagerInterface;
@@ -23,20 +25,74 @@ class DefaultController extends AbstractController
 {
 //    Page d'accueil'
     #[Route('/', name: 'app.home')]
-    public function index( ExampleService $exampleService,
+    public function index( EntityManagerInterface $em,
+                           Request $request,
+                           ExampleService $exampleService,
                            AddsService $adds,
-                           AnnonceRepository $annonceRepository, int $id=1): Response
+                           AnnonceRepository $annonceRepository,
+                           AnnonceService $annonceService,
+                           CategoryService $categoryService, int $id=1, int $page = 1):
+    Response
     {
         $seller = $exampleService->getSeller();
         $add = $adds->getAdds();
+        $filters = [];
+
+        if ($request->get('query') !== null) {
+            $filters['query'] = $request->get('query');
+        }
+
+        if ($request->get('categorie') !== null && is_array($request->get('categorie'))) {
+
+            $filters['in_categorie'] = $request->get('categorie');
+        }
+
+        if ($request->get('price_sup') !== null) {
+            $filters['price_sup'] = (float)$request->get('price_sup');
+        }
+
+        if ($request->get('price_inf') !== null) {
+            $filters['price_inf'] = (float)$request->get('price_inf');
+        }
+
+//        if ($request->get('date_depot') !== null && is_array($request->get('date_depot'))) {
+//            $filters['date_depot'] = $request->get('date_depot');
+//        }
+
+        $order = [];
+        $allowedOrder = ['prix', 'date_depot', 'categorie', 'produit'];
+        if ($request->get('order') !== null && str_contains($request->get('order'), ',')) {
+            $o_ = explode(',', $request->get('order'));
+            if (in_array($o_[0], $allowedOrder, true)) {
+                $order[$o_[0]] = strtoupper($o_[1]);
+            }
+        }
+
+        try {
+            $annonces = $annonceService->getAnnonces($filters, $order, $page, $limit);
+        } catch (\Throwable $e) {
+            if ($e->getCode() === 10) {
+                // page does not exists
+                throw $this->createNotFoundException('La page n\'existe pas !');
+            }
+            $annonces = [
+                'results' => [],
+                'count' => 0,
+                'totalPages' => 1,
+                'error' => $e->getMessage(),
+            ];
+        }
 
         return $this->render('default/index.html.twig', [
+            'add' => $add,
+            'queryParams' => http_build_query($_GET),
+            'annonceQuery' => $annonces,
+            'actualPage' => $page,
+            'categorie' => $categoryService->getAllCategories(),
             'controller_name' => 'DefaultController',
             'seller' => $seller,
-            'add' => $add,
             'id' => $id,
             'listAnnonceForm'=> $annonceRepository->findLastDepot(1),
-            'queryParams' => http_build_query($_GET),
         ]);
     }
 

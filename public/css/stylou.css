@@ -59,7 +59,6 @@
 .inputa:checked ~ .collapsible-item-content {
   max-height: 100vh;
   padding: 1em;
-
 }
 
 .subbutt{
@@ -164,7 +163,6 @@
   width:85%;
   border-color: var(--color-primary);
   border-style:double;
-
 }
 
 .txtlarger{

@@ -20,10 +20,12 @@ class AnnonceService
      * @param array $order
      * @param int $page
      * @param int $limit
+//     * @param int $imgcheck
      * @return array
      */
     public function getAnnonces(
         array $filters,
+//        string $imgcheck,
         array $order,
         int $page = 1,
         int $limit = 10
@@ -37,6 +39,7 @@ class AnnonceService
             ->select('a')
             ->from(Annonce::class, 'a')
             ->where('1 = 1');
+
 
         if (isset($filters['query'])) {
             $qb->andWhere('a.commentaires LIKE :query')
@@ -65,7 +68,11 @@ class AnnonceService
         }
 
         if (isset($order['date_depot'])) {
-            $qb->orderBy('a.date_depot', $order['date_depot']);
+            $qb->orderBy('a.dateDepot', $order['date_depot']);
+        }
+
+        if (isset($order['produit'])) {
+            $qb->orderBy('a.produit', $order['produit']);
         }
 
         $qbCount = clone $qb;

@@ -1,112 +1,179 @@
-<script>
-function myFunction()
-{
-var myForm = document.getElementById('form-id');
-var allInputs = myForm.getElementsByTagName('input');
-var input, i;
-console.log("OK-0");
-for(i = 0; input === allInputs[i]; i++) {
-console.log("OK-1");
-if(input.getAttribute('name') && !input.value) {
-console.log("OK-2");
-input.setAttribute('name', '');
-}
-}
-console.log("OK-3");
-}
-</script>
-<form id="form-id" onsubmit="myFunction()" method="GET" action="{{ path('app_annonce') }}? {{ queryParams }}" name="formulaire">
-        {%  if queryParams is not empty %}
+<div class="bgcolor w-100 p-1 rounded-4 border border-warning border-2 shadow" xmlns="http://www.w3.org/1999/html"
+     xmlns="http://www.w3.org/1999/html">
+    <form id="filters">
+        <div class="form-row w-100 mb-2">
+            <label for="categorie" class="form-label">Catégories</label>
+            <select name="categorie"
+                    multiple class="form-select unselect-on-null" id="categorie">
+                <option value="null" {% if app.request.get('categorie', null) == null %} selected {% endif %}>
+                    Tous le site
+                </option>
+                {% for cat_ in categorie %}
+                    <option value="{{ cat_.id }}"
+                            {% if cat_.id in app.request.get('categorie', []) %} selected {% endif %}
+                    >{{ cat_.name|capitalize }}</option>
+                {% endfor %}
+            </select>
+        </div>
 
-            <div class="w-50">
-                {%  if app.request.query.get('query') is not empty %}
-                    - Filtre(s) :{{ app.request.query.get('query') }}
-                {% endif %}
-
-                {%  if app.request.query.get('choixtri') is not empty %}
-                    - Tri par : {{ app.request.query.get('choixtri') }}
-                {% endif %}
+        <div class="row">
+            <div class="col-12 col-md-6 mb-3">
+                <label for="price_sup" class="form-label">Prix mini</label>
+                <input type="number" class="form-control"
+                       name="price_sup" value="{{ app.request.get('price_sup', '') }}"
+                       id="price_sup" placeholder="99">
             </div>
-        {% endif %}
-        <div class="rowrecherche row rounded-4 m-1">
-            <div class="col-8">
-                <div class="collapsible-accordion">
-                    <div class="collapsible-item">
-                        <input class="inputa" type="checkbox" id="tab10">
-                        <label class="collapsible-item-label" for="tab10">Trier des annonces par :</label>
-                        <div class="collapsible-item-content">
-                            <ul class="list-unstyled">
-                                {%  if (app.request.query.get('choixtri') == 'dat') or (app.request.attributes.get("_route") =='app.home') %}
-                                <li><input type="radio" name="choixtri" id="choixtriDate" checked value="dat" />
-                            {% else %}
-                                <li><input type="radio" name="choixtri" id="choixtriDate" value="dat" />
-                                    {% endif %}
-                                    <label for="choixtriDate">Date de dépôt</label></li>
 
-                                {%  if app.request.query.get('choixtri') == 'ven' %}
-                                <li><input type="radio" name="choixtri" id="choixtriVendeur" checked value="ven" />
-                            {% else %}
-                                <li><input type="radio" name="choixtri" id="choixtriVendeur" value="ven" />
-                                    {% endif %}
-                                    <label for="choixtriVendeur">Vendeur</label></li>
-
-                                {%  if app.request.query.get('choixtri') =='pro' %}
-                                <li><input type="radio" name="choixtri" id="choixtriProduit" checked value="pro" />
-                            {% else %}
-                                <li><input type="radio" name="choixtri" id="choixtriProduit" value="pro" />
-                                    {% endif %}
-                                    <label for="choixtriProduit">Produit</label></li>
-
-                                {%  if app.request.query.get('choixtri') =='cat' %}
-                                <li><input type="radio" name="choixtri" id="choixtriCategorie" checked value="cat" />
-                            {% else %}
-                                <li><input type="radio" name="choixtri" id="choixtriCategorie" value="cat" />
-                                    {% endif %}
-                                    <label for="choixtriCategorie">Catégorie</label></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-{#           Ici#}
-{#            <div class="col-4">#}
-{#                <button class="subbutt" type="submit"><p class="Penvoie m-1">Envoyer</p></button>#}
-{#                <button class="bg-secondary rounded-circle"><a class="text-decoration-none text-white" href="{{ path('app_annonce') }}">♻</a></button>#}
-{#            </div>#}
-
-            <div class="col-8">
-                <div class="collapsible-accordion">
-                    <div class="collapsible-item">
-                        <input class="inputa" type="checkbox" id="tab11">
-                        <label class="collapsible-item-label" for="tab11"><label for="recherchemot">Rechercher des annonces par mot-clé :</label></label>
-                        <div class="collapsible-item-content">
-                            {%  if app.request.query.get('query') is not empty %}
-                                <input class="inputtxt" name="query" id="recherchemot" value="{{ app.request.query.get('query') }}" type="text">
-                            {% else %}
-                                <input class="inputtxt" name="query" type="text" value="">
-                            {% endif %}
-
-                            <li><label for="choixtriCategorie">prix supérieur</label></li>
-                            {%  if app.request.query.get('price_sup') is not empty %}
-                            <input class="inputtxt" name="price_sup" id="recherchemot" value="{{ app.request.query.get('price_sup') }}" type="text">
-                            {% else %}
-                                <input class="inputtxt" name="price_sup" id="recherchemot" value="" type="text">
-                            {% endif %}
-
-                            <li><label for="choixtriCategorie">prix inférieur</label></li>
-                            {%  if app.request.query.get('price_inf') is not empty %}
-                                <input class="inputtxt" name="price_inf" id="recherchemot" value="{{ app.request.query.get('price_inf') }}" type="text">
-                            {% else %}
-                                <input class="inputtxt" name="price_inf" id="recherchemot" value="" type="text">
-                            {% endif %}
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-4">
-                <button class="subbutt" type="submit"><p class="Penvoie m-1">Envoyer</p></button>
-                <button class="bg-secondary rounded-circle"><a class="text-decoration-none text-white" href="{{ path('app_annonce') }}">♻</a></button>
+            <div class="col-12 col-md-6 mb-3">
+                <label for="price_inf" class="form-label">Prix max</label>
+                <input type="number" class="form-control"
+                       name="price_inf" value="{{ app.request.get('price_inf', '') }}"
+                       id="price_inf" placeholder="99">
             </div>
         </div>
-</form>
+
+        <div class="mb-3">
+            <label for="query" class="form-label">Recherche</label>
+            <input type="text" class="form-control"
+                   name="query" value="{{ app.request.get('query', '') }}"
+                   id="query" placeholder="meuble occasion...">
+        </div>
+
+        <div class="row">
+            <div class="col-12 col-md-6 mb-2">
+                <label for="order" class="form-label">Trier par</label>
+                <select name="order"
+                        class="form-select" id="order">
+                    <option value="">Par id</option>
+                    <option {% if app.request.get('order', '') == 'produit,asc' %} selected {% endif %}
+                        value="produit,asc">Par produit asc</option>
+                    <option {% if app.request.get('order', '') == 'produit,desc' %} selected {% endif %}
+                        value="produit,desc">Par produit desc</option>
+                    <option {% if app.request.get('order', '') == 'price,asc' %} selected {% endif %}
+                            value="prix,asc">Du moins cher au plus cher
+                    </option>
+                    <option {% if app.request.get('order', '') == 'price,desc' %} selected {% endif %}
+                            value="prix,desc">Du plus cher au moins cher
+                    </option>
+                    <option  {% if app.request.get('order', '') == 'date_depot,asc' %} selected {% endif %}
+                            value="date_depot,asc">Par date asc
+                    </option>
+                    <option  {% if app.request.get('order', '') == 'date_depot,desc' %} selected {% endif %}
+                            value="date_depot,desc">Par date desc
+                    </option>
+                </select>
+            </div>
+
+            <div class="col-12 col-md-6 mb-2">
+                <label for="limit" class="form-label">Nombre annonces par pages</label>
+                <select name="limit"
+                        class="form-select" id="limit">
+                    {% for i in range(1,25) %}
+                        <option value="{{ i }}"
+                                {% if i == app.request.get('limit', 25) %} selected {% endif %}
+                        >{{ i }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+
+        <div class="row">
+        <div class="col-4">
+            <input type="checkbox" name="imgcheck" id="imgcheck" class="m-1">Afficher les annonces avec image...
+
+
+        </div>
+        <div class="col-4">
+            <input type="checkbox" name="yourcheck" id="yourcheck" class="m-1">Afficher vos annonces...
+        </div>
+{#            <div class="col-4">#}
+{#                <input>Afficher vos annonces...</input>#}
+{#            </div>#}
+        </div>
+
+        <div class="form-row w-100 d-flex justify-content-center align-items-center mt-4">
+            <button type="submit" class="subbutt"><p class="Penvoie m-1">Envoyer</p></button>
+            <input type="button" class="bg-secondary rounded-circle text-white"
+                   id="removeFilters"
+                   value="♻">
+        </div>
+    </form>
+</div>
+
+<script>
+    // document.getElementById("imgcheck").value = document.getElementById("imgcheck").checked === checked;
+    // document.getElementById("yourcheck").value = document.getElementById("yourcheck").checked === checked;
+
+
+    let selects_ = document.querySelectorAll('select.unselect-on-null');
+    selects_.forEach(su_ => {
+        su_.addEventListener('change', e => {
+            const selected = su_.querySelectorAll('option:checked');
+            const values = Array.from(selected).map(el => el.value);
+            if (values.includes('null')) {
+                su_.querySelectorAll('option').forEach(option => {
+                    if (option.value !== 'null') {
+                        option.removeAttribute('checked')
+                    } else {
+                        option.setAttribute('checked', 'true');
+                    }
+                });
+            }
+        })
+    })
+    let removeFilters = document.querySelector('#removeFilters');
+    removeFilters.addEventListener('click', e => {
+        // redirect to new url
+        let baseUrl = '{{ path('app_annonce') }}';
+        // get current host
+        let host = window.location.host;
+        window.location.href = 'https://' + host + baseUrl;
+    });
+    let form = document.querySelector('#filters');
+    form.addEventListener('submit', e => {
+        e.preventDefault();
+        let payload = {};
+        form.querySelectorAll('select').forEach(_select => {
+            const name = _select.getAttribute('name');
+            let isMultiple = _select.getAttribute('multiple');
+            if (isMultiple !== null) {
+                const selected = _select.querySelectorAll('option:checked');
+                const values = Array.from(selected).map(el => el.value);
+                if (Array.isArray(values) && values.length > 0 && !values.includes('null')) {
+                    payload[name] = values;
+                }
+            } else {
+                payload[name] = _select.value;
+            }
+        });
+        form.querySelectorAll('input').forEach(_input => {
+            if (_input.getAttribute('type') === 'submit' || _input.getAttribute('type') === 'button') {
+                return;
+            }
+            const name = _input.getAttribute('name');
+            const value = _input.value;
+            if (value !== undefined && value !== '') {
+                payload[name] = value;
+            }
+        })
+        // payload => http query param
+        let queryParams = Object.keys(payload).map(key => {
+            let v = payload[key];
+            if (Array.isArray(v)) {
+                let retArray = [];
+                for (let i = 0; i < v.length; i++) {
+                    let subValue = v[i];
+                    retArray.push(key + '[]=' + subValue);
+                }
+                return retArray.join('&');
+            } else {
+                return key + '=' + payload[key];
+            }
+        }).join('&');
+        // redirect to new url
+        let baseUrl = '{{ path('app_annonce') }}';
+        // get current host
+        let host = window.location.host;
+        window.location.href = 'https://' + host + baseUrl + '?' + queryParams;
+    })
+</script>

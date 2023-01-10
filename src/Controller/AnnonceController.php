@@ -27,7 +27,9 @@ class AnnonceController extends AbstractController
     #[Route('/annonce/list/{page}', name: 'app_annonce_page')]
     public function index( EntityManagerInterface $em,
                                 Request $request,
-                                AddsService $adds, AnnonceRepository $annonceRepository, AnnonceService $annonceService, CategoryService $categoryService, int $page = 1,
+                                AddsService $adds, AnnonceRepository $annonceRepository,
+                           AnnonceService $annonceService,
+                           CategoryService $categoryService, int $page = 1,
     ): Response
     {
         $add = $adds->getAdds();
@@ -37,6 +39,11 @@ class AnnonceController extends AbstractController
         $limit = (int)$request->get('limit', 15);
 
         $filters = [];
+
+//
+//        if ($request->get('imgcheck')) {
+//            $filters['imgcheck'] = $request->get('imgcheck');
+//        }
 
         if ($request->get('query') !== null) {
             $filters['query'] = $request->get('query');
@@ -48,12 +55,16 @@ class AnnonceController extends AbstractController
         }
 
         if ($request->get('price_sup') !== null) {
-            $filters['price_sup'] = (int)$request->get('price_sup');
+            $filters['price_sup'] = (float)$request->get('price_sup');
         }
 
         if ($request->get('price_inf') !== null) {
-            $filters['price_inf'] = (int)$request->get('price_inf');
+            $filters['price_inf'] = (float)$request->get('price_inf');
         }
+//
+//        if ($request->get('date_depot') !== null && is_array($request->get('date_depot'))) {
+//            $filters['date_depot'] = $request->get('date_depot');
+//        }
 
         $order = [];
         $allowedOrder = ['prix', 'date_depot', 'categorie', 'produit'];

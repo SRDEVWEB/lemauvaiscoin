@@ -62,12 +62,11 @@ color: var(--color-quaternary);
 
       .imgprod{
         border-radius: 14px;
-        
-        /* width:50%; 
-        height:auto;  */
+        /*width:auto;*/
+        /*height:auto;*/
 rotate: 3deg;
-padding-top: 6px;
-padding-bottom: 6px;
+padding-top: 3px;
+padding-bottom: 3px;
 /* padding-top: 10px; */
 }
 

@@ -18,7 +18,6 @@ class AddCompteType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-
             ->add('name')
             ->add('first_name')
             ->add('adress1')
@@ -30,8 +29,10 @@ class AddCompteType extends AbstractType
             ->add('email')
             ->add('password',PasswordType::class)
             ->add('password2', PasswordType::class,["mapped"=> false])
-            //->add('roles')
-//            ->add('Envoyer', SubmitType::class,["label"=>"Valider"])
+//            ->add('roles')
+            ->add('Envoyer', SubmitType::class,[
+                "label"=>"Valider"])
+
         ;
     }
 
