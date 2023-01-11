@@ -96,7 +96,7 @@ class DefaultController extends AbstractController
         ]);
     }
 
-    #[Route('/compte', name: 'new_compte')]
+    #[Route('/compteController', name: 'new_compte')]
     public function addCompte( EntityManagerInterface $em,
                                Request $request,UserPasswordHasherInterface $passwordHasher, ExampleService $exampleService,
                                AddsService $adds,

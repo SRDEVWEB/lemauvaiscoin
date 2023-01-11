@@ -79,12 +79,12 @@
 
         <div class="row">
         <div class="col-4">
-            <input type="checkbox" name="imgcheck" id="imgcheck" class="m-1">Afficher les annonces avec image...
+            <input type="checkbox" name="imgcheck" id="imgcheck" value="true" {% if app.request.get('imgcheck', '') == 'true' %} checked {% endif %} class="imgcheck m-1">Afficher les annonces avec image...
 
 
         </div>
         <div class="col-4">
-            <input type="checkbox" name="yourcheck" id="yourcheck" class="m-1">Afficher vos annonces...
+            <input type="checkbox" name="yourcheck" value="true" id="yourcheck" {% if app.request.get('yourcheck', '') == 'true' %} checked {% endif %}  class="yourcheck m-1">Afficher vos annonces...
         </div>
 {#            <div class="col-4">#}
 {#                <input>Afficher vos annonces...</input>#}
@@ -101,10 +101,6 @@
 </div>
 
 <script>
-    // document.getElementById("imgcheck").value = document.getElementById("imgcheck").checked === checked;
-    // document.getElementById("yourcheck").value = document.getElementById("yourcheck").checked === checked;
-
-
     let selects_ = document.querySelectorAll('select.unselect-on-null');
     selects_.forEach(su_ => {
         su_.addEventListener('change', e => {
@@ -143,6 +139,9 @@
                     payload[name] = values;
                 }
             } else {
+                if (_select.value === undefined || _select.value === '') {
+                    return;
+                }
                 payload[name] = _select.value;
             }
         });
@@ -152,11 +151,17 @@
             }
             const name = _input.getAttribute('name');
             const value = _input.value;
+
+            if (_input.getAttribute('type') === 'checkbox' || _input.getAttribute('type') === 'radio') {
+                if (_input.checked) {
+                    payload[name] = value;
+                }
+                return;
+            }
             if (value !== undefined && value !== '') {
                 payload[name] = value;
             }
         })
-        // payload => http query param
         let queryParams = Object.keys(payload).map(key => {
             let v = payload[key];
             if (Array.isArray(v)) {
@@ -170,10 +175,9 @@
                 return key + '=' + payload[key];
             }
         }).join('&');
-        // redirect to new url
         let baseUrl = '{{ path('app_annonce') }}';
-        // get current host
         let host = window.location.host;
         window.location.href = 'https://' + host + baseUrl + '?' + queryParams;
     })
+
 </script>

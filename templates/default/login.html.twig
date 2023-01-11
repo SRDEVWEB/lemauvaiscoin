@@ -17,6 +17,11 @@
     <div class="example-wrapper">
         <div class="row">
             <div class="col-12">
+            <ul>
+                <li>Je n'ai pas de compte : <code> <a href="{{ path('new_compte') }}">S'inscrire</a></code></li>
+            </ul>
+                </div>
+            <div class="col-12">
                 {% if error is not null %}
                     <div class="alert-danger mb-3">
                         {{ error.messageKey|trans(error.messageData, 'security') }}

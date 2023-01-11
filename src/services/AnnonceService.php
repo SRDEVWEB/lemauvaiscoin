@@ -4,6 +4,8 @@ namespace App\services;
 
 use App\Entity\Annonce;
 use Doctrine\ORM\EntityManagerInterface;
+use function PHPUnit\Framework\isEmpty;
+
 
 class AnnonceService
 {
@@ -18,15 +20,15 @@ class AnnonceService
     /**
      * @param array $filters
      * @param array $order
+//     * @param string $annoncesimg
      * @param int $page
      * @param int $limit
-//     * @param int $imgcheck
      * @return array
      */
     public function getAnnonces(
         array $filters,
-//        string $imgcheck,
         array $order,
+//        string $annoncesimg,
         int $page = 1,
         int $limit = 10
     ): array {
@@ -40,6 +42,12 @@ class AnnonceService
             ->from(Annonce::class, 'a')
             ->where('1 = 1');
 
+
+//        if ($annoncesimg===true) {
+//            $qb->andWhere('a.imageFile != EMPTY')
+////            ->setParameter('imgcheck', !isEmpty());
+//        }
+//        dump($annoncesimg);die;
 
         if (isset($filters['query'])) {
             $qb->andWhere('a.commentaires LIKE :query')
@@ -62,6 +70,14 @@ class AnnonceService
             $qb->andWhere('a.prix < :priceinf')
                 ->setParameter('priceinf', $filters['price_inf']);
         }
+
+
+        if (isset($filters['imgcheck'])) {
+            $qb->andWhere('a.imageFile IS NOT NULL');
+        }
+
+//        dump($filters['imgcheck']);die;
+
 
         if (isset($order['prix'])) {
             $qb->orderBy('a.prix', $order['prix']);

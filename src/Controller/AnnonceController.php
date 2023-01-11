@@ -39,11 +39,18 @@ class AnnonceController extends AbstractController
         $limit = (int)$request->get('limit', 15);
 
         $filters = [];
+//        $annoncesimg=false;
 
-//
-//        if ($request->get('imgcheck')) {
-//            $filters['imgcheck'] = $request->get('imgcheck');
+//       $annoncesimg = (bool)$request->get('imgcheck');
+
+//        if ($request->get('imgcheck') === true) {
+//            $annoncesimg = $request->get('imgcheck');
+////            dump($annoncesimg);die;
+//        }else{$annoncesimg=false;
+////            dump($annoncesimg);die;
 //        }
+
+
 
         if ($request->get('query') !== null) {
             $filters['query'] = $request->get('query');
@@ -62,9 +69,12 @@ class AnnonceController extends AbstractController
             $filters['price_inf'] = (float)$request->get('price_inf');
         }
 //
-//        if ($request->get('date_depot') !== null && is_array($request->get('date_depot'))) {
-//            $filters['date_depot'] = $request->get('date_depot');
-//        }
+        if ($request->get('imgcheck') == true) {
+            $filters['imgcheck'] = (string)$request->get('imgcheck');
+//            dump($filters['imgcheck']);die;
+        }
+
+
 
         $order = [];
         $allowedOrder = ['prix', 'date_depot', 'categorie', 'produit'];
@@ -77,6 +87,7 @@ class AnnonceController extends AbstractController
 
         try {
             $annonces = $annonceService->getAnnonces($filters, $order, $page, $limit);
+//
         } catch (\Throwable $e) {
             if ($e->getCode() === 10) {
                 // page does not exists
@@ -117,7 +128,6 @@ class AnnonceController extends AbstractController
         $annonce->setVisible('1');
         $annonce->setOwner($user);
         $annonce->setCommentaires("Ajouter un commentaire...");
-
         $annonce->setPrix('0');
 $annonce->setDescription('Ajoutez une description...');
 $annonce->setCouleur('orange');
