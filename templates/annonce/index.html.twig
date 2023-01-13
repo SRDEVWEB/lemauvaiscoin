@@ -3,25 +3,9 @@
 
 {% block body %}
 
-{#    <style>#}
-{#        .example-wrapper {#}
-{#            margin: 1em auto;#}
-{#            max-width: 100%;#}
-{#            box-shadow: #6f42c1;#}
-{#            width: 95%;#}
-{#            font: 18px/1.5 sans-serif;#}
-{#        }#}
-{#    </style>#}
-
-
-{#<div class="container w-100">#}
-{#    <div class="example-wrapper">#}
-{#        <h1>Hello 🤖</h1>#}
-
-{#        <div class="right-side mb-4">#}
 {#            <ul class="list-unstyled m-0 p-0 d-flex">#}
 {#                <li class="pr-2">ID : <a class="text-info" href="/profile">{{ app.user.id }}</a>&nbsp;/&nbsp; </li>#}
-{#                <li class="pr-2">Prénom : <a class="text-info" href="/profile">{{ app.user.name }}</a>&nbsp;/&nbsp; </li>#}
+
 {#                <li class="pr-2">Nom : <a class="text-info" href="/profile">{{ app.user.firstname }}</a>&nbsp;/&nbsp; </li>#}
 {#                <li class="pr-2">E-mail : <a class="text-info" href="/profile">{{ app.user.email }}</a>&nbsp;/&nbsp; </li>#}
 {#                {% if is_granted('ROLE_ADMIN') %}#}
@@ -29,8 +13,6 @@
 {#                {% endif %}#}
 {#                <li class="pr-2"><a class="text-danger" href="{{ path('app.logout') }}">logout</a></li>#}
 {#            </ul>#}
-{#        </div>#}
-
         <div class="row mx-3">
             <div class="espacepub col-12 col-sm-12 col-md-5 col-lg-4 col-xl-3 text-center">
                       {% include "/default/publicite.html.twig" %}
@@ -38,101 +20,9 @@
 
             <div class="col-12 col-sm-12 col-md-7 col-lg-8 col-xl-9">
         <div class="formtxtbgcolor h-100 w-100 p-4 bg-dark text-warning">
-{#            <div class="text-black-50 p-4 m-4 rounded-2 shadow">#}
-{#                <div class="">#}
                 {{ form(form) }}
-{#                    {{ dump(form) }}#}
-{#                {{ form_start(form) }}#}
-
-{#            <div class="row">#}
-{#            <div class="w-50 text-center">#}
-{#                {{ form_label(form.produit, 'Le choix parmi nos produits : ') }}#}
-{#                <div class="margprod">#}
-{#                {{ form_widget(form.produit, {'attr':{'class':'form-control'}}) }}#}
-{#                </div>#}
-{#            </div>#}
-
-{#            <div class="margcate w-25 p-1 mx-4">#}
-{#                {{ form_label(form.categorie, 'Sélectionnez une catégorie pour votre produit : ') }}#}
-{#                {{ form_widget(form.categorie, {'attr':{'class':'form-control'}}) }}#}
-{#            </div>#}
-{#</div>#}
-{#            <div class="col-9 w-25 p-1 mx-4">#}
-{#                {{ form_label(form.img, 'Mettez une photo de votre produit : (parmi nos propositions)') }}#}
-{#                {{ form_widget(form.img, {'attr':{'class':'form-control'}}) }}#}
-{#            </div>#}
-
-{#            <div class="col-9 w-50 p-1 mx-4">#}
-{#            {{ form_label(form.image, 'Mettez la photo de votre produit : ') }}#}
-{#            {{ form_widget(form.image, {'attr':{'class':'form-control'}}) }}#}
-{#        </div>#}
-{#                    <div class="col-3 w-25 p-1 mx-4">#}
-{#                        {{ form_label(form.prix, 'Prix du produit : (en euros)') }}#}
-{#                        {{ form_widget(form.prix, {'attr':{'class':'form-control'}}) }}#}
-{#                    </div>#}
-{#            #}
-{#                    <div class="col-9 w-75 p-1 mx-4">#}
-{#                        {{ form_label(form.commentaires, 'Votre commentaire : ') }}#}
-{#                        {{ form_widget(form.commentaires, {'attr':{'class':'form-control'}}) }}#}
-{#                    </div>#}
-
-{#                    <div class="col-9 w-75 p-1 mx-4">#}
-{#                        {{ form_label(form.description, 'Votre description : ') }}#}
-{#                        {{ form_widget(form.description, {'attr':{'class':'form-control'}}) }}#}
-{#                    </div>#}
-
-{#                    <div class="col-9 w-75 p-1 mx-4">#}
-{#                        {{ form_label(form.couleur, 'La couleur principale du produit : ') }}#}
-{#                        {{ form_widget(form.couleur, {'attr':{'class':'form-control'}}) }}#}
-{#                    </div>#}
-{#                    <div class="col-9 w-75 p-1 mx-4">#}
-{#                        {{ form_label(form.poids, 'Le poids du produit (précisez l\'unité) : ') }}#}
-{#                        {{ form_widget(form.poids, {'attr':{'class':'form-control'}}) }}#}
-{#                    </div>#}
-
-{#                    <div class="col-9 w-75 p-1 mx-4">#}
-{#                        {{ form_label(form.hauteur, 'La hauteur du produit (précisez l\'unité) : ') }}#}
-{#                        {{ form_widget(form.hauteur, {'attr':{'class':'form-control'}}) }}#}
-{#                    </div>#}
-
-{#                    <div class="col-9 w-75 p-1 mx-4">#}
-{#                        {{ form_label(form.largeur, 'La largeur du produit (précisez l\'unité) : ') }}#}
-{#                        {{ form_widget(form.largeur, {'attr':{'class':'form-control'}}) }}#}
-{#                    </div>#}
-
-{#                    <div class="col-9 w-75 p-1 mx-4">#}
-{#                        {{ form_label(form.profondeur, 'La hauteur du produit (précisez l\'unité) : ') }}#}
-{#                        {{ form_widget(form.profondeur, {'attr':{'class':'form-control'}}) }}#}
-{#                    </div>#}
-
-{#                    <div class="col-9 w-75 p-1 mx-4">#}
-{#                        {{ form_label(form.dimensions, 'Les dimensions du produit (précisez l\'unité) : ') }}#}
-{#                        {{ form_widget(form.dimensions, {'attr':{'class':'form-control'}}) }}#}
-{#                    </div>#}
-
-
-
-{#                    <div class="text-center">#}
-{#                        <button class="subbutt" type="submit"><p class="Penvoie m-1">Envoyer</p></button>#}
-{#                    </div>#}
-
-
-{#                {{ form_end(form) }}#}
-{#            </div>#}
-{#            </div>#}
-        </div>
-    </div>
-        </div>
-
-{#    </div>#}
     <br>
-{#    </div>#}
-
-
-
-
 {% endblock %}
-
 
 {% block javascript_footer %}
     <!-- coucou -->

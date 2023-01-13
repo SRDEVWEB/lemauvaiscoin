@@ -32,8 +32,10 @@ margin-left: auto;
 margin-right: 20px;
 border-color: var(--color-primary);
 border-style: double;
-padding-bottom: 8px;
-translate: 0px -25px;
+padding: 18px;
+          word-wrap: break-word;
+
+/*translate: 0px -25px;*/
       }
 
       .catcolor{
@@ -74,9 +76,9 @@ padding-bottom: 3px;
   display: flex;
         justify-content: center;
   border-radius: 21% 79% 17% 83% / 84% 25% 75% 16%;
-  background-color: var(--color-quaternary);
+  background-color: var(--color-white);
   color:var(--color-secondary);
-  height: 180px;
+  /*height: 180px;*/
   width:100%;
   margin-left: auto;
   border-color: var(--color-primary);
@@ -87,20 +89,6 @@ padding-bottom: 3px;
         .cardcontainer{
           height: 200px;
           padding: 8px;
-        }
-
-        .blob4{
-          align-items: center;
-          text-align: center;
-          background-color: var(--color-quaternary);
-          border-radius: 21% 79% 17% 83% / 84% 25% 75% 16%;
-          color:var(--color-secondary);
-          margin-left: auto;
-          margin-right: 20px;
-          border-color: var(--color-primary);
-          border-style: double;
-          padding-bottom: 8px;
-          translate: 0px -70px;
         }
 
         .blob5{
@@ -121,9 +109,9 @@ padding-bottom: 3px;
           display: flex;
                 justify-content: center;
           border-radius: 21% 79% 17% 83% / 84% 25% 75% 16%;
-          background-color: var(--color-quaternary);
+          background-color: var(--color-white);
           color:var(--color-secondary);
-          height: 90px;
+          /*height: 90px;*/
           width:100%;
           margin-left: auto;
           border-color: var(--color-primary);

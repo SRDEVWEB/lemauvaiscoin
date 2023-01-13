@@ -32,8 +32,6 @@ class AddCompteType extends AbstractType
 //            ->add('roles')
             ->add('Envoyer', SubmitType::class,[
                 "label"=>"Valider"])
-
-
         ;
     }
 

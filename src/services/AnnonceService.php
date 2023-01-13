@@ -3,7 +3,10 @@
 namespace App\services;
 
 use App\Entity\Annonce;
+use App\Entity\Owner;
+use ContainerF3cJm2L\getOwnerRepositoryService;
 use Doctrine\ORM\EntityManagerInterface;
+use http\Client\Curl\User;
 use function PHPUnit\Framework\isEmpty;
 
 
@@ -20,7 +23,6 @@ class AnnonceService
     /**
      * @param array $filters
      * @param array $order
-//     * @param string $annoncesimg
      * @param int $page
      * @param int $limit
      * @return array
@@ -28,7 +30,6 @@ class AnnonceService
     public function getAnnonces(
         array $filters,
         array $order,
-//        string $annoncesimg,
         int $page = 1,
         int $limit = 10
     ): array {
@@ -36,18 +37,14 @@ class AnnonceService
             $page = 1;
         }
 
-        $qb = $this->em->createQueryBuilder();
+        $qb = $this ->em->createQueryBuilder();
         $qb
             ->select('a')
             ->from(Annonce::class, 'a')
             ->where('1 = 1');
 
 
-//        if ($annoncesimg===true) {
-//            $qb->andWhere('a.imageFile != EMPTY')
-////            ->setParameter('imgcheck', !isEmpty());
-//        }
-//        dump($annoncesimg);die;
+        $lapinou = 1 ;
 
         if (isset($filters['query'])) {
             $qb->andWhere('a.commentaires LIKE :query')
@@ -71,13 +68,16 @@ class AnnonceService
                 ->setParameter('priceinf', $filters['price_inf']);
         }
 
-
         if (isset($filters['imgcheck'])) {
             $qb->andWhere('a.imageFile IS NOT NULL');
         }
 
-//        dump($filters['imgcheck']);die;
+        if (isset($filters['yourcheck'])) {
+            $qb->andWhere('a.owner = :lapinou ')
+            ->setParameter('lapinou', $lapinou);
+        }
 
+//        dump($filters['imgcheck']);die;
 
         if (isset($order['prix'])) {
             $qb->orderBy('a.prix', $order['prix']);

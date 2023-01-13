@@ -65,13 +65,15 @@
   background-color: var(--color-quaternary);
   color: var(--color-secondary);
   border: 1px dashed var(--color-secondary);
-  width: 160px;
-  margin-top: 8px;
+  /*margin-top: 8px;*/
   margin-bottom: 8px;
-  height: 100px;
-    border-radius: 80px / 50px;
     text-align: center;
-    transform: rotate(16deg);
+
+  padding: 2px;
+  transform: rotate(16deg);
+  width: 86px;
+  height: 54px;
+  border-radius: 43px / 27px;
 }
 
 .rowrecherche{
@@ -88,13 +90,15 @@
 }
 
 .espacepub{
+  width: max-content;
   border-radius: 10px;
   border: 2px solid var(--color-primary);
   background-color: var(--color-quaternary);
-  height: 100%;
-  margin-bottom: 40px;
+  /*height: 100%;*/
+  margin-bottom: 0px;
   padding-bottom: 10px;
   padding-top: 5px;
+
 } 
 
 .detailspub{
@@ -103,42 +107,24 @@
 }
 
 @media (max-width: 800px) {
-  .subbutt{
-    color: var(--color-secondary);
-    margin-top: 16px;
-    margin-bottom: 8px;
-    padding: 2px;
-    transform: rotate(40deg);
-    width: 86px;
-    height: 54px;
-    border-radius: 43px / 27px;
-  }
 
   .Penvoie{
     transform: rotate(-40deg);
   }
-.espacepub{
-  max-height:225px;
-    border-radius: 10px;
-    border: 2px solid var(--color-primary);
-    background-color: var(--color-quaternary);
-  
-    margin-bottom: 15px;
-    padding-bottom: 10px;
-    padding-top: 5px;
-  } 
 
-.blob, .blob2{
+.blob{
   height: 100%;
   translate: 0px -15px;
 }
 
 }
-
+.br-1{
+  border-radius: 21% 79% 17% 83% / 84% 25% 75% 16%;
+  margin: 2px;
+}
 .blob{
   border-radius: 21% 79% 17% 83% / 84% 25% 75% 16%;
   background-color: var(--color-tertiary);
-  height: 180px;
   border-color: var(--color-primary);
   border-style: double;
 }
@@ -147,10 +133,10 @@
   border-radius: 21% 79% 17% 83% / 84% 25% 75% 16%;
   background-color: var(--color-quaternary);
   color:var(--color-secondary);
-  height: 180px;
   width:85%;
-  margin-left: auto;
-  margin-right: 20px;
+  height: 180px;
+  /*margin-left: auto;*/
+  /*margin-right: 20px;*/
   border-color: var(--color-primary);
   border-style: double;
 

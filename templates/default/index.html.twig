@@ -4,7 +4,12 @@
 
 {% block body %}
 
-    {% include "default/_index.html.twig" %}
+    <div class="text-center">
+        {% if is_granted('ROLE_USER') %}
+        <h4>Bonjour, {{ app.user.name }}</h4>
+        {% endif %}
+    </div>
 
+    {% include "default/_index.html.twig" %}
 
 {% endblock %}

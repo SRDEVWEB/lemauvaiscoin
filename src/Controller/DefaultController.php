@@ -38,6 +38,14 @@ class DefaultController extends AbstractController
         $add = $adds->getAdds();
         $filters = [];
 
+
+        $user = $this->getUser();
+        if (!$user instanceof Owner) {
+//            throw new AccessDeniedHttpException('Vous devez êtes connecté!');
+        }
+
+
+
         if ($request->get('query') !== null) {
             $filters['query'] = $request->get('query');
         }

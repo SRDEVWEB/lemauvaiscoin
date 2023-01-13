@@ -17,6 +17,7 @@ use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -39,18 +40,8 @@ class AnnonceController extends AbstractController
         $limit = (int)$request->get('limit', 15);
 
         $filters = [];
-//        $annoncesimg=false;
 
-//       $annoncesimg = (bool)$request->get('imgcheck');
-
-//        if ($request->get('imgcheck') === true) {
-//            $annoncesimg = $request->get('imgcheck');
-////            dump($annoncesimg);die;
-//        }else{$annoncesimg=false;
-////            dump($annoncesimg);die;
-//        }
-
-
+        $user = $this->getUser();
 
         if ($request->get('query') !== null) {
             $filters['query'] = $request->get('query');
@@ -71,10 +62,11 @@ class AnnonceController extends AbstractController
 //
         if ($request->get('imgcheck') == true) {
             $filters['imgcheck'] = (string)$request->get('imgcheck');
-//            dump($filters['imgcheck']);die;
         }
 
-
+        if ($request->get('yourcheck') == true) {
+            $filters['yourcheck'] = (string)$request->get('yourcheck');
+        }
 
         $order = [];
         $allowedOrder = ['prix', 'date_depot', 'categorie', 'produit'];
