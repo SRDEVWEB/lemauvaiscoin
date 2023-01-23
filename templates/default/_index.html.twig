@@ -1,18 +1,33 @@
-<div class="row mx-3">
-
-    <div class="col-12 col-sm-12 col-md-7 col-lg-8 col-xl-9">
-        {% include "default/formRecherche.html.twig" %}
-        <div class="rowrecherche row rounded-4 m-1">
-            <div class="col-8">
-                <p>Dernière annonce postée : </p>
-            </div>
-
-            <div>
-                {% include "default/annonce.html.twig" %}
-            </div>
+<div class="container">
+    <div class="row align-items-center">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-9 mb-1">
+            {% include "default/formRecherche.html.twig" %}
+        </div>
+        <div class="col-12 col-sm12 col-md-6 col-lg-4 col-xl-3">
+            <div class="espacepub text-center shadow w-100"> {% include "/default/publicite.html.twig" %}</div>
         </div>
     </div>
-    <div class="espacepub col-4 col-sm-4 col-md-4 col-lg-4 col-xl-3 text-center shadow">
-        {% include "default/publicite.html.twig" %}
+
+    <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 order-1 order-sm-1 order-md-1 order-lg-1 order-xl-1">
+        <h4>Dernière annonce postée : </h4>
+    </div>
+    <div class="rowrecherche w-100 small text-dark p-3 rounded-2 my-1 border border-warning border-2 shadow mb-3">
+        {% include "default/annonce.html.twig" %}
     </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

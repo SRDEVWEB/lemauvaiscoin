@@ -5,8 +5,10 @@
 {% block body %}
 
     <div class="text-center">
-        {% if is_granted('ROLE_USER') %}
-        <h4>Bonjour, {{ app.user.name }}</h4>
+        {% if is_granted('ROLE_USER') or is_granted('ROLE_ADMIN')  %}
+        <h4>Ravi de vous revoir, {{ app.user.name }}</h4>
+        {% else %}
+            <h4>Bonjour et bienvenue, vous pouvez <a href="{{ path('app.login') }}">vous connecter</a> ou <a href="{{ path('new_compte') }}">vous inscrire...</a></h4>
         {% endif %}
     </div>
 

@@ -37,6 +37,10 @@
             <input type="text" class="form-control"
                    name="query" value="{{ app.request.get('query', '') }}"
                    id="query" placeholder="meuble occasion...">
+            {% if is_granted('ROLE_USER') or is_granted('ROLE_ADMIN')  %}
+                <input type="number" name="user" value="{{ app.user.id }}"
+                   id="user" hidden>
+            {% endif %}
         </div>
 
         <div class="row">
@@ -81,10 +85,11 @@
         <div class="col-4">
             <input type="checkbox" name="imgcheck" id="imgcheck" value="true" {% if app.request.get('imgcheck', '') == 'true' %} checked {% endif %} class="imgcheck m-1">Afficher les annonces avec image...
 
-
         </div>
         <div class="col-4">
+            {% if is_granted('ROLE_USER') or is_granted('ROLE_ADMIN')  %}
             <input type="checkbox" name="yourcheck" value="true" id="yourcheck" {% if app.request.get('yourcheck', '') == 'true' %} checked {% endif %}  class="yourcheck m-1">Afficher vos annonces...
+            {% endif %}
         </div>
 {#            <div class="col-4">#}
 {#                <input>Afficher vos annonces...</input>#}
@@ -95,7 +100,7 @@
             <button type="submit" class="subbutt"><p class="Penvoie m-1">Envoyer</p></button>
             <input type="button" class="bg-secondary rounded-circle text-white"
                    id="removeFilters"
-                   value="♻">
+                   value="🧹">
         </div>
     </form>
 </div>

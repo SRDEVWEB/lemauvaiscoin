@@ -10,6 +10,17 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: CartRepository::class)]
 class Cart
 {
+
+//- ID du Panier: identifiant numérique unique pour identifier chaque panier.
+//- ID du Client: identifiant numérique permettant de lier chaque panier à un client particulier.
+//- ID du Produit: identifiant numérique indiquant quels produits sont associés au panier.
+//- Quantité: nombre de produits associés à chaque panier.
+//- Prix Total: le total des prix des produits associés au panier.
+//- Date d'achat: la date à laquelle le panier a été acheté.
+//- Statut du paiement: indique si le panier a été payé ou non.
+
+
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]

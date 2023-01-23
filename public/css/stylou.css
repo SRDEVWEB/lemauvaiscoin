@@ -57,10 +57,16 @@
   translate: 0px 0px;
 }
 .inputa:checked ~ .collapsible-item-content {
-  max-height: 100vh;
+  max-height: 100%;
   padding: 1em;
 }
 
+.subbuttfixed{
+  position: fixed;
+  right:20px;
+  bottom: 30px;
+  z-index:9999;
+}
 .subbutt{
   background-color: var(--color-quaternary);
   color: var(--color-secondary);
@@ -98,7 +104,6 @@
   margin-bottom: 0px;
   padding-bottom: 10px;
   padding-top: 5px;
-
 } 
 
 .detailspub{
@@ -106,18 +111,19 @@
   margin-left: 10px;
 }
 
-@media (max-width: 800px) {
+/*@media (max-width: 800px) {*/
 
-  .Penvoie{
-    transform: rotate(-40deg);
-  }
+/*  .Penvoie{*/
+/*    transform: rotate(-40deg);*/
+/*  }*/
 
-.blob{
-  height: 100%;
-  translate: 0px -15px;
-}
+/*.blob{*/
+/*  height: 100%;*/
+/*  translate: 0px -15px;*/
+/*}*/
 
-}
+/*}*/
+
 .br-1{
   border-radius: 21% 79% 17% 83% / 84% 25% 75% 16%;
   margin: 2px;
@@ -139,7 +145,6 @@
   /*margin-right: 20px;*/
   border-color: var(--color-primary);
   border-style: double;
-
 }
 
 .blob3{

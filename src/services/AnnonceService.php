@@ -4,6 +4,7 @@ namespace App\services;
 
 use App\Entity\Annonce;
 use App\Entity\Owner;
+use App\Repository\OwnerRepository;
 use ContainerF3cJm2L\getOwnerRepositoryService;
 use Doctrine\ORM\EntityManagerInterface;
 use http\Client\Curl\User;
@@ -19,17 +20,18 @@ class AnnonceService
     ) {
         $this->em = $em;
     }
-
     /**
      * @param array $filters
      * @param array $order
+     * @param int $user
      * @param int $page
-     * @param int $limit
+     * @param int
      * @return array
      */
     public function getAnnonces(
         array $filters,
         array $order,
+        int $user=0,
         int $page = 1,
         int $limit = 10
     ): array {
@@ -43,8 +45,6 @@ class AnnonceService
             ->from(Annonce::class, 'a')
             ->where('1 = 1');
 
-
-        $lapinou = 1 ;
 
         if (isset($filters['query'])) {
             $qb->andWhere('a.commentaires LIKE :query')
@@ -74,7 +74,7 @@ class AnnonceService
 
         if (isset($filters['yourcheck'])) {
             $qb->andWhere('a.owner = :lapinou ')
-            ->setParameter('lapinou', $lapinou);
+            ->setParameter('lapinou', $user);
         }
 
 //        dump($filters['imgcheck']);die;

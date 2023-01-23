@@ -3,24 +3,16 @@
 {% block title %}Page de login{% endblock %}
 
 {% block body %}
-    <style>
-        .example-wrapper {
-            margin: 1em auto;
-            max-width: 800px;
-            box-shadow: #6f42c1;
-            width: 95%;
-            font: 18px/1.5 sans-serif;
-        }
-
-    </style>
     <div class="container">
-    <div class="example-wrapper">
-        <div class="row">
+    <div class="row align-items-center">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-9 mb-1">
             <div class="col-12">
             <ul>
                 <li>Je n'ai pas de compte : <code> <a href="{{ path('new_compte') }}">S'inscrire</a></code></li>
             </ul>
-                </div>
+                <h1 class="text-center">Se connecter</h1>
+
+            </div>
             <div class="col-12">
                 {% if error is not null %}
                     <div class="alert-danger mb-3">
@@ -46,13 +38,17 @@
                             <input type="password" class="form-control w-100" name="_password" id="loginpwd">
                         </div>
                             <div class="text-center">
-                            <button class="subbutt" type="submit"><p class="Penvoie m-1">Se connecter</p></button>
+                            <button class="subbutt" type="submit">
+                                <h6 class="px-1"><p class="Penvoie m-1">Se connecter</p></h6></button>
                         </div>
                     </div>
 
                 </form>
                 </div>
             </div>
+        </div>
+        <div class="col-12 col-sm12 col-md-6 col-lg-4 col-xl-3">
+            <div class="espacepub text-center shadow w-100"> {% include "/default/publicite.html.twig" %}</div>
         </div>
     </div>
     </div>

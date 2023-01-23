@@ -37,14 +37,11 @@ class DefaultController extends AbstractController
         $seller = $exampleService->getSeller();
         $add = $adds->getAdds();
         $filters = [];
-
-
-        $user = $this->getUser();
-        if (!$user instanceof Owner) {
-//            throw new AccessDeniedHttpException('Vous devez êtes connecté!');
-        }
-
-
+//
+            $user = $this->getUser();
+            if (!$user instanceof Owner) {
+       //        throw new AccessDeniedHttpException('Vous devez êtes connecté!');
+            }
 
         if ($request->get('query') !== null) {
             $filters['query'] = $request->get('query');
@@ -129,6 +126,7 @@ class DefaultController extends AbstractController
 
                 $em->persist($compte);
                 $em->flush();
+                echo('OK!!!');
             }else{
                 echo('Le mot de passe ne correspond pas!!!');
            }

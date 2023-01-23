@@ -3,25 +3,70 @@
 
 {% block body %}
 
-{#            <ul class="list-unstyled m-0 p-0 d-flex">#}
-{#                <li class="pr-2">ID : <a class="text-info" href="/profile">{{ app.user.id }}</a>&nbsp;/&nbsp; </li>#}
-
-{#                <li class="pr-2">Nom : <a class="text-info" href="/profile">{{ app.user.firstname }}</a>&nbsp;/&nbsp; </li>#}
-{#                <li class="pr-2">E-mail : <a class="text-info" href="/profile">{{ app.user.email }}</a>&nbsp;/&nbsp; </li>#}
-{#                {% if is_granted('ROLE_ADMIN') %}#}
-{#                    <li class="pr-2"><a class="text-info" href="/admin">administration</a>&nbsp;/&nbsp; </li>#}
-{#                {% endif %}#}
-{#                <li class="pr-2"><a class="text-danger" href="{{ path('app.logout') }}">logout</a></li>#}
-{#            </ul>#}
-        <div class="row mx-3">
-            <div class="espacepub col-12 col-sm-12 col-md-5 col-lg-4 col-xl-3 text-center">
-                      {% include "/default/publicite.html.twig" %}
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-9 mb-1">
+                <h1 class="text-center">Ajouter une annonce</h1>
             </div>
+            <div class="col-12 col-sm12 col-md-6 col-lg-4 col-xl-3">
+                <div class="espacepub text-center shadow w-100"> {% include "/default/publicite.html.twig" %}</div>
+            </div>
+        </div>
 
-            <div class="col-12 col-sm-12 col-md-7 col-lg-8 col-xl-9">
-        <div class="formtxtbgcolor h-100 w-100 p-4 bg-dark text-warning">
-                {{ form(form) }}
-    <br>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 order-1 order-sm-1 order-md-1 order-lg-1 order-xl-1">
+        </div>
+        <div class="br-1 overflow-auto">
+            <div class="container-fluid blob w-100 h-auto p-2 shadow">
+                <div class="container w-75 align-items-center">
+                    <div class="form__wrapper p-4">
+                        {{ form_start(form) }}
+                        <div class="my-custom-class-for-errors">
+                            {{ form_errors(form) }}
+                        </div>
+                        <div class="container">
+                            <div class="col-8 bgcolor-secondary catcolor px-1 rounded-top">Votre produit</div>
+                            <div class="border border-warning px-1 bgcolor-secondary">
+                                <div class="row">
+                                    <div class="col">{{ form_row(form.produit) }}</div>
+                                    <div class="col">{{ form_row(form.categorie) }}</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">{{ form_row(form.prix) }}</div>
+                                    <div class="col">{{ form_row(form.description) }}</div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="col-8 bgcolor-secondary catcolor px-1 rounded-top">Les caractéristiques</div>
+                            <div class="border border-warning px-1 bgcolor-secondary">
+                                <div class="col">{{ form_row(form.commentaires) }}</div>
+                                <div class="col">{{ form_row(form.couleur) }}</div>
+                                <div class="row">
+                                    <div class="col">{{ form_row(form.poids) }}</div>
+                                    <div class="col">{{ form_row(form.hauteur) }}</div>
+                                    <div class="col">{{ form_row(form.largeur) }}</div>
+                                    <div class="col">{{ form_row(form.profondeur) }}</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">{{ form_row(form.dimensions) }}</div>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="col-8 bgcolor-secondary catcolor px-1 rounded-top">Visuellement</div>
+                            <div class="border border-warning px-1 bgcolor-secondary">
+                                <div class="row">
+                                    <div class="col">{{ form_row(form.img) }}</div>
+                                </div>
+                                <div class="row">
+                                    <div class="col">{{ form_row(form.image) }}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-center mt-3">{{ form_end(form) }}</div>
+                    </div>
+                </div>
+            </div>  </div>
+    </div>
+
 {% endblock %}
 
 {% block javascript_footer %}

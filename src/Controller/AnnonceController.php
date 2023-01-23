@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\OwnerRepository;
 use App\services\AnnonceService;
 use App\Entity\Annonce;
 use App\Entity\Owner;
@@ -19,6 +20,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
@@ -30,7 +32,7 @@ class AnnonceController extends AbstractController
                                 Request $request,
                                 AddsService $adds, AnnonceRepository $annonceRepository,
                            AnnonceService $annonceService,
-                           CategoryService $categoryService, int $page = 1,
+                           CategoryService $categoryService, int $page = 1
     ): Response
     {
         $add = $adds->getAdds();
@@ -41,14 +43,13 @@ class AnnonceController extends AbstractController
 
         $filters = [];
 
-        $user = $this->getUser();
+        $user=0;
 
         if ($request->get('query') !== null) {
             $filters['query'] = $request->get('query');
         }
 
         if ($request->get('categorie') !== null && is_array($request->get('categorie'))) {
-
             $filters['in_categorie'] = $request->get('categorie');
         }
 
@@ -66,6 +67,7 @@ class AnnonceController extends AbstractController
 
         if ($request->get('yourcheck') == true) {
             $filters['yourcheck'] = (string)$request->get('yourcheck');
+            $user=(int)$request->get('user');
         }
 
         $order = [];
@@ -78,7 +80,7 @@ class AnnonceController extends AbstractController
         }
 
         try {
-            $annonces = $annonceService->getAnnonces($filters, $order, $page, $limit);
+            $annonces = $annonceService->getAnnonces($filters, $order, $user, $page, $limit );
 //
         } catch (\Throwable $e) {
             if ($e->getCode() === 10) {
@@ -158,7 +160,6 @@ $annonce->setDimensions('0');
                 // instead of its contents
                 $annonce->setImageFile($newFilename);
             }
-
 
             $em->persist($annonce);
 

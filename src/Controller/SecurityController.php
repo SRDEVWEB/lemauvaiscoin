@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Annonce;
 use App\Entity\Owner;
+use App\services\AddsService;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -14,8 +15,10 @@ class SecurityController extends AbstractController
     #[Route('/login', name: 'app.login')]
     public function login(
         AuthenticationUtils $utils,
+        AddsService $adds,
     ): Response {
         $user = $this->getUser();
+        $add = $adds->getAdds();
         // si on est deja logger on affiche pas le form
         if ($user instanceof Owner) {
             return $this->redirectToRoute('app.home');
@@ -25,6 +28,8 @@ class SecurityController extends AbstractController
 
         return $this->render('default/login.html.twig', [
             'error' => $error,
+            'add' => $add,
+
         ]);
     }
 

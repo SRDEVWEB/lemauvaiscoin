@@ -12,6 +12,8 @@ class AjoutAnnonceType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
+            ->add('produit')
+
             ->add('dateDepot')
             ->add('dateUpdate')
             ->add('dateSeil')
@@ -25,7 +27,6 @@ class AjoutAnnonceType extends AbstractType
             ->add('largeur')
             ->add('profondeur')
             ->add('dimensions')
-            ->add('produit')
             ->add('img')
             ->add('categorie')
             ->add('owner')

@@ -1,27 +1,46 @@
 
 {% for listAnnoncesForm in listAnnonceForm %}
-    <a href="{{ path('ads.display.simple', {'id': listAnnoncesForm.id}) }}" class="row rounded-4 m-1 text-decoration-none text-warning p-2">
-<div class="row">
-    <div class="col-4"><div class="blobimg text-center"><img class="imgprod img-fluid" src="{{asset('/img/produits/')}}{{listAnnoncesForm.imageFile}}" alt="photo du produit!"></div></div>
-    <div class="col-8">
-        <div class="row h-50"><div class="catcolor col-6">Catégorie : <span><h4>{{ listAnnoncesForm.categorie }}</h4></span></div>
+<a href="{{ path('ads.display.simple', {'id': listAnnoncesForm.id}) }}"
+       class="rowrecherche row rounded-4 m-1 text-decoration-none text-warning p-2 border border-warning border-2 shadow">
+    <div class="row">
+    <div class="col-4">
+        <div class="blobimg imgprod">
+            <div class="br-1 overflow-hidden">
+            <img class="img-fluid" src="{{asset('/img/produits/')}}{{listAnnoncesForm.imageFile}}"
+                 alt="photo du produit!">
+            </div>
         </div>
-        <div class="row h-25"><div class="col-12"></div><span><h1 class="blob4 p-2">{{ listAnnoncesForm.produit }}</h1></span></div>
-        <div class="row h-25"><div class="col-12"></div><span><h1 class="blob5">{{ listAnnoncesForm.prix }}€</h1></span></div>
+    </div>
+    <div class="col-8">
+        <div class="row h-auto">
+            <div class="catcolor col-12">Catégorie :&nbsp;<span>
+                    <h4 class="text-white">{{ listAnnoncesForm.categorie }}</h4></span></div>
+        </div>
+        <div class="row">
+            <div class="col-12"></div>
+            <span><h3 class="blob4">{{ listAnnoncesForm.produit }}</h3></span></div>
+        <div class="row">
+            <div class="col-12"></div>
+            <span><h1 class="blob5">{{ listAnnoncesForm.prix }}€</h1></span></div>
     </div>
 
 </div>
-<div class="row">
-    <div class="catcolor col-4"><h4 class="text-end">Description : </h4></div>
-    <div class="col-8"><div class="blob2"><span><h5 class="pt-5 text-center p-4">{{ listAnnoncesForm.description|slice(0, 184) }}</h5></span></div></div>
+    <div class="row">
+    <div class="catcolor col-12 ">
+        <h4 class="mb-4">Description :&nbsp;</h4>
+    </div>
+        <div class="col-12">
+         <div class="blob2 w-100 text-center d-flex align-items-center justify-content-center"> <h5 class="p-4">{{ listAnnoncesForm.description|slice(0, 145) }}</h5></div>
+    </div>
 </div>
 <div class="col-12">
     <div class="collapsible-accordion">
-        <div class="collapsible-item">
+        <div class="collapsible-item h-100">
             <input class="inputa" type="checkbox" id="tab20">
             <label class="collapsible-item-label" for="tab20">Détails</label>
             <div class="collapsible-item-content">
-                <div class="col-6 text-white">Date de dépôt : <span><h3>{{ listAnnoncesForm.dateDepot|date("d/m/Y")  }}</h3></span></div>
+                <div class="col-12 text-white">Date de dépôt :
+                    <span><h3>{{ listAnnoncesForm.dateDepot|date("d/m/Y")  }}</h3></span></div>
                 <p class="txtlarger">Caractéristiques : </p>
                 <div class="row">
                     <div class="textcolor col-6">Couleur :<span>{{ listAnnoncesForm.couleur }}</span></div>
@@ -39,55 +58,54 @@
                 <div class="row">
                     <p class="txtlarger">Commentaires du vendeur : </p>
                 </div>
-                <div class="blob2 text-center p-5">
-                    {{ listAnnoncesForm.commentaires }}
+                <div class="blob2 w-100 text-center d-flex align-items-center justify-content-center">
+                    <h6 class="p-4">{{ listAnnoncesForm.commentaires|slice(0, 218) }}</h6>
                 </div>
-
-
             </div>
         </div>
     </div>
 </div>
 
     <div class="row">
-        <div class="col-12 col-sm-12 col-md-12 col-lg-2 col-xl-2"><p class="txtlarger mb-0">Le vendeur:</p></div>
-        <div class="col-12 col-sm-12 col-md-12 col-lg-10 col-xl-10">
+        <div class="col-12"><p class="txtlarger mb-0">Le vendeur :</p></div>
+        <div class="col-12">
             <div class="">
-{#                collapsible-accordion#}
                 <div class="">
-{#                    collapsible-item#}
                     <input class="inputa" type="checkbox" id="tab30">
-
-{#                    collapsible-item-label#}
-                    <label class="lapinette" for="tab30"><label for="vendeur"> {{ listAnnoncesForm.owner.name }} {{ listAnnoncesForm.owner.firstName }}</label></label>
-{#                    collapsible-item-content#}
+                    <label class="lapinette" for="tab30"><label
+                                for="vendeur"> {{ listAnnoncesForm.owner.name }} {{ listAnnoncesForm.owner.firstName }}</label></label>
                     <div class="bgcolor">
                         <div class="row">
-                            <div class="textcolor col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">Ville :<span>{{ listAnnoncesForm.owner.city }}</span></div>
-                            <div class="textcolor col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">Code postal :<span>{{ listAnnoncesForm.owner.codePostal }}</span></div>
+                            <div class="textcolor col-12 col-sm-6">
+                                Ville :&nbsp;<span>{{ listAnnoncesForm.owner.city }}</span></div>
+                            <div class="textcolor col-12 col-sm-6">
+                                Code postal :&nbsp;<span>{{ listAnnoncesForm.owner.codePostal }}</span></div>
                             <div class="row">
                                 <div class="col-1 mt-2"></div>
                                 <div class="bordera col-10 mt-4"></div>
                                 <div class="col-1 mt-2"></div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6"><label for="envoiquestion"><h3>Contacter le vendeur :</h3></label></div>
-                            <div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-9">
+                        <div class="row p-1">
+                            <div class="col-12"><label for="envoiquestion"><h4>Contacter
+                                        le vendeur :</h4></label></div>
+                            <div class="col-12 col-xl-8">
                                 <form class="m-0" action="alain.php" method="POST">
-
-                                    <textarea class="textinputmail" rows="5" cols="auto" id="envoiquestion" name="envoiquestion"></textarea>
+                                    <textarea class="textinputmail w-100 p-2" rows="5" cols="auto"
+                                              id="envoiquestion"
+                                              name="envoiquestion"></textarea>
+                                </form>
                             </div>
-                            <div class="text-center col-4 col-sm-4 col-md-4 col-lg-4 col-xl-3"><button class="subbutt" type="submit"><p class="Penvoie m-1">Envoyer</p></button>
+                            <div class="text-center col-12 col-xl-4 d-flex flex-column justify-content-center align-items-center">
+                                <button class="subbutt" type="submit">
+                                    <p class="Penvoie m-1">Envoyer</p></button>
                                 <div class="borderenvoi">0,99€/envoi</div>
                             </div>
-                            </form>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
     </a>
 {% endfor %}

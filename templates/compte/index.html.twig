@@ -3,70 +3,70 @@
 {% block title %}Création d'un compte{% endblock %}
 
 {% block body %}
-<div class="row mx-3">
-    <div class="espacepub col-12 col-sm-12 col-md-5 col-lg-4 col-xl-3 text-center">
-        {% include "/default/publicite.html.twig" %}
-    </div>
 
-    <div class="col-12 col-sm-12 col-md-7 col-lg-8 col-xl-9">
-        <div class="formtxtbgcolor h-100 w-100 p-4 bg-dark text-warning">
-{#            blob#}
-            <h1>Créer un compte</h1>
-{#                <div class="text-black-50 p-4 m-4 rounded-circle text-center shadow">#}
-                    {{ form(formCompte) }}
 
-{#                    {{ form_start(formCompte) }}#}
-{#                    <div class="col-9 w-75 p-1 mx-4">#}
-{#                        {{ form_label(formCompte.name, 'Votre nom : ') }}#}
-{#                        {{ form_widget(formCompte.name, {'attr':{'class':'form-control'}}) }}#}
-{#                    </div>#}
-
-{#            <div class="col-9 w-75 p-1 mx-4">#}
-{#                {{ form_label(formCompte.first_name, 'Votre prénom : ') }}#}
-{#                {{ form_widget(formCompte.first_name, {'attr':{'class':'form-control'}}) }}#}
-{#            </div>#}
-
-{#            <div class="col-9 w-75 p-1 mx-4">#}
-{#                {{ form_label(formCompte.adress1, 'Votre adresse : ') }}#}
-{#                {{ form_widget(formCompte.adress1, {'attr':{'class':'form-control'}}) }}#}
-{#            </div>#}
-{#            <div class="col-9 w-75 p-1 mx-4">#}
-{#                {{ form_label(formCompte.adress2, 'Suite de votre adresse : ') }}#}
-{#                {{ form_widget(formCompte.adress2, {'attr':{'class':'form-control'}}) }}#}
-{#            </div>#}
-{#            <div class="col-9 w-75 p-1 mx-4">#}
-{#                {{ form_label(formCompte.code_postal, 'Code postal : ') }}#}
-{#                {{ form_widget(formCompte.code_postal, {'attr':{'class':'form-control'}}) }}#}
-{#            </div>#}
-{#            <div class="col-9 w-75 p-1 mx-4">#}
-{#                {{ form_label(formCompte.city, 'Ville : ') }}#}
-{#                {{ form_widget(formCompte.city, {'attr':{'class':'form-control'}}) }}#}
-{#            </div>#}
-{#            <div class="col-9 w-75 p-1 mx-4">#}
-{#                {{ form_label(formCompte.tel, 'Votre téléphone : ') }}#}
-{#                {{ form_widget(formCompte.tel, {'attr':{'class':'form-control'}}) }}#}
-{#            </div>#}
-{#            <div class="col-9 w-75 p-1 mx-4">#}
-{#                {{ form_label(formCompte.email, 'Votre email : ') }}#}
-{#                {{ form_widget(formCompte.email, {'attr':{'class':'form-control'}}) }}#}
-{#            </div>#}
-{#            <div class="col-9 w-75 p-1 mx-4">#}
-{#                {{ form_label(formCompte.password, 'Votre mot de passe : ') }}#}
-{#                {{ form_widget(formCompte.password, {'attr':{'class':'form-control'}}) }}#}
-{#            </div>#}
-{#            <div class="col-9 w-75 p-1 mx-4">#}
-{#                {{ form_label(formCompte.password2, 'Saisisez votre mot de passe à nouveau : ') }}#}
-{#                {{ form_widget(formCompte.password2, {'attr':{'class':'form-control'}}) }}#}
-{#            </div>#}
-{#                    <div class="text-center">#}
-{#                        <button class="subbutt" type="submit"><p class="Penvoie m-1"> Envoyer </p></button>#}
-{#                    </div>#}
-{#                    {{ form_end(formCompte) }}#}
-{#                                    </div>#}
+<div class="container">
+    <div class="row align-items-center">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-9 mb-1">
+            <ul>
+                <li>J'ai déjà un compte : <code> <a href="{{ path('app_compte') }}">Se connecter</a></code></li>
+            </ul>
+            <h1 class="text-center">Créer un compte</h1>
         </div>
-        <br>
+        <div class="col-12 col-sm12 col-md-6 col-lg-4 col-xl-3">
+            <div class="espacepub text-center shadow w-100"> {% include "/default/publicite.html.twig" %}</div>
+        </div>
     </div>
-</div>
+
+    <div class="col-12 col-sm-12 col-md-6 col-lg-4 col-xl-4 order-1 order-sm-1 order-md-1 order-lg-1 order-xl-1">
+    </div>
+    <div class="br-1 overflow-auto">
+        <div class="container-fluid blob w-100 h-auto p-2 shadow">
+            <div class="container w-75 align-items-center">
+                <div class="form__wrapper p-4">
+
+                    {{ form_start(formCompte) }}
+                    <div class="my-custom-class-for-errors">
+                        {{ form_errors(formCompte) }}
+                    </div>
+                    <div class="container">
+                        <div class="col-8 bgcolor-secondary catcolor px-1 rounded-top">Informations de contact</div>
+                        <div class="border border-warning px-1 bgcolor-secondary">
+                            <div class="row">
+                                <div class="col">{{ form_row(formCompte.name) }}</div>
+                                <div class="col">{{ form_row(formCompte.first_name) }}</div>
+                            </div>
+                            <div class="row">
+                                <div class="col">{{ form_row(formCompte.email) }}</div>
+                                <div class="col">{{ form_row(formCompte.tel) }}</div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="col-8 bgcolor-secondary catcolor px-1 rounded-top">Informations de livraison</div>
+                        <div class="border border-warning px-1 bgcolor-secondary">
+                            <div class="col">{{ form_row(formCompte.adress1) }}</div>
+                            <div class="col">{{ form_row(formCompte.adress2) }}</div>
+                            <div class="row">
+                                <div class="col">{{ form_row(formCompte.code_postal) }}</div>
+                                <div class="col">{{ form_row(formCompte.city) }}</div>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="col-8 bgcolor-secondary catcolor px-1 rounded-top">Informations de sécurité</div>
+                        <div class="border border-warning px-1 bgcolor-secondary">
+                            <div class="row">
+                                <div class="col">{{ form_row(formCompte.password) }}</div>
+                                <div class="col">{{ form_row(formCompte.password2) }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center mt-3">{{ form_end(formCompte) }}</div>
+                </div>
+            </div>
+        </div>
+                </div>
+            </div>
+
 {% endblock %}
 
 

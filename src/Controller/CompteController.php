@@ -35,16 +35,15 @@ class CompteController extends AbstractController
     {
         $add = $adds->getAdds();
         $user = $this->getUser();
+
         if (!$user instanceof Owner) {
             throw new AccessDeniedHttpException('Vous devez êtes connecté!');
         }
 
         try {
             $utilisateur = $ownerRepository  ->findOneBySomeField($user);
-
         }
         catch (\Throwable $e) {
-
     }
 
         $form=$this->createForm(AddCompteType::class, $utilisateur);
@@ -52,9 +51,18 @@ class CompteController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
 
-//            $em->persist($utilisateur);
+            $plaintextPassword =$form->get('password2')->getData();
 
-            $em->flush();
+            if ($user->getPassword()===$plaintextPassword) {
+                $plaintextPassword = $user->getPassword();
+                $hashedPassword = $passwordHasher->hashPassword($user, $plaintextPassword);
+                $user->setPassword($hashedPassword);
+                $em->flush();
+            }else{
+                echo('Le mot de passe ne correspond pas!!!');
+            }
+
+
         }
 
 

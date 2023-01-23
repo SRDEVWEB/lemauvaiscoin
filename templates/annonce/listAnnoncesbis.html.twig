@@ -1,149 +1,36 @@
-{% extends 'base.html.twig' %}
-{% block title %}Lister les annonces!{% endblock %}
-{% block body %}
-    <div class="row mx-3">
-        <div class="col-12 col-sm-12 col-md-7 col-lg-8 col-xl-9">
-            <div class="formtxtbgcolor bg-white h-100 w-100">
-                <div class="rowrecherche row rounded-4 m-1">
-                    <h1>LISTE DES ANNONCES</h1>
-                    {% include "default/formRecherche.html.twig" %}
-                    <div class="w-100 small text-dark p-3">
-                        {% if annonceQuery.results|length > 0 %}
-                            il y a <b class="text-white">{{ annonceQuery.count }} annonces</b> dans vos critères.
-                            <div class="pb-1 d-flex align-items-end justify-content-end">Page en cours : &nbsp; <b class="text-white">{{ annonceQuery.page }}</b>/{{ annonceQuery.totalPages }}</div>
-                        {% else %}
-                            il n'y a aucune annonce avec vos critères.
-                            <div class="pb-1 d-flex align-items-end justify-content-end">Pas de page...</div>
-                        {% endif %}
-                    </div>
-                    {% if annonceQuery.results|length <= 0 %}
-                    <div class="col-12 mb-2 text-center small p-2">
-                        <h3>Aucune annonce trouvée 😔</h3>
-                    </div>
-                    {% else %}
-                </div>
-                <div class="row">
-                    {% for annonce in annonceQuery.results %}
-                        <div class="col-6">
-                            <a href="{{ path('ads.display.simple', {'id': annonce.id}) }}" class="rowrecherche row rounded-4 m-1 text-decoration-none text-warning p-2">
-                                <div class="row">
-                                    <div class="col-4"><div class="blobimg text-center"><img class="imgprod" src="{{ annonce.imageFile }}" alt="photo du produit!"></div></div>
-                                    <div class="col-8">
-                                        <div class="row h-50"><div class="catcolor col-6">Catégorie : <span><h4>{{ annonce.categorie }}</h4></span></div>
-                                        </div>
-                                        <div class="row h-25"><div class="col-12"></div><span><h1 class="blob4 p-2">{{ annonce.produit }}</h1></span></div>
-                                        <div class="row h-25"><div class="col-12"></div><span><h1 class="blob5">{{ annonce.prix }}€</h1></span></div>
-                                    </div>
-
-                                </div>
-                                <div class="row">
-                                    <div class="catcolor col-4"><h4 class="text-end">Description : </h4></div>
-                                    <div class="col-8"><div class="blob2"><span><h5 class="pt-5 text-center">{{ annonce.description }}</h5></span></div></div>
-                                </div>
-                                <div class="col-12">
-                                    <div class="collapsible-accordion">
-                                        <div class="collapsible-item">
-                                            <input class="inputa" type="checkbox" id="{{ annonce.id }}.tab20">
-                                            <label class="collapsible-item-label" for="{{ annonce.id }}.tab20">Détails</label>
-                                            <div class="collapsible-item-content">
-                                                <div class="col-6 text-white">Date de dépôt : <span><h3>{{ annonce.dateDepot|date("d/m/Y")  }}</h3></span></div>
-                                                <p class="txtlarger">Caractéristiques : </p>
-                                                <div class="row">
-                                                    <div class="textcolor col-6">Couleur :<span>{{ annonce.couleur }}</span></div>
-                                                    <div class="textcolor col-6">Hauteur :<span>{{ annonce.hauteur }}</span></div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="textcolor col-6">Poids :<span>{{ annonce.poids }}</span></div>
-                                                    <div class="textcolor col-6">Largeur :<span>{{ annonce.largeur }}</span></div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="textcolor col-6">Dimensions :<span>{{ annonce.dimensions }}</span></div>
-                                                    <div class="textcolor col-6">Profondeur :<span>{{ annonce.profondeur }}</span></div>
-                                                </div>
-                                                <br>
-                                                <div class="row">
-                                                    <p class="txtlarger">Commentaires du vendeur : </p>
-                                                </div>
-                                                <div class="blob2 text-center p-5">
-                                                    {{ annonce.commentaires }}
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="row">
-                                        <div class="col-12 col-sm-12 col-md-12 col-lg-2 col-xl-2"><p class="txtlarger mb-0">Le vendeur:</p></div>
-                                        <div class="col-12 col-sm-12 col-md-12 col-lg-10 col-xl-10">
-                                            <div class="">
-                                                {#                                collapsible-accordion#}
-                                                <div class="">
-                                                    {#                                    collapsible-item#}
-                                                    <input class="inputa" type="checkbox" id="{{ annonce.id }}.tab30">
-                                                    {#                                    collapsible-item-label#}
-                                                    <label class="lapinette" for="{{ annonce.id }}.tab30"><label for="vendeur"> {{ annonce.owner.name }} {{ annonce.owner.firstName }}</label></label>
-                                                    {#                                    collapsible-item-content#}
-                                                    <div class="bgcolor">
-                                                        <div class="row">
-                                                            <div class="textcolor col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">Ville :<span>{{ annonce.owner.city }}</span></div>
-                                                            <div class="textcolor col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6">Code postal :<span>{{ annonce.owner.codePostal }}</span></div>
-                                                            <div class="row">
-                                                                <div class="col-1 mt-2"></div>
-                                                                <div class="bordera col-10 mt-4"></div>
-                                                                <div class="col-1 mt-2"></div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-6"><label for="envoiquestion"><h3>Contacter le vendeur :</h3></label></div>
-                                                            <div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-9">
-                                                                <form class="m-0" action="alain.php" method="POST">
-
-                                                                    <textarea class="textinputmail" rows="5" cols="auto" id="envoiquestion" name="envoiquestion"></textarea>
-                                                                </form>
-                                                            </div>
-                                                            <div class="text-center col-4 col-sm-4 col-md-4 col-lg-4 col-xl-3"><button class="subbutt" type="submit"><p class="Penvoie m-1">Envoyer</p></button>
-                                                                <div class="borderenvoi">0,99€/envoi</div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                            </a>
-                        </div>
-                    {% endfor %}
-                </div>
-
-                {% endif %}
-
-                {% if annonceQuery.totalPages > 1 %}
-                    <div class="w-100 d-flex justify-content-center align-item-center mt-3">
-
-                        {% for i in range(1, annonceQuery.totalPages) %}
-                            {% if i <= 1 %}
-                                <a href="{{ path('app_annonce') }}?{{ queryParams }}"
-                                   class="btn btn-sm btn-outline-secondary {% if i == actualPage %}active{% endif %} me-2">1</a>
-                            {% else %}
-                                <a href="{{ path('app_annonce_page', {'page': i}) }}?{{ queryParams }}"
-                                   class="btn btn-sm btn-outline-secondary {% if i == actualPage %}active{% endif %} me-2">{{ i }}</a>
-                            {% endif %}
-                        {% endfor %}
-                    </div>
-
-                {% endif %}
-
-            </div>
+<div class="container">
+    <div class="row align-items-center">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-8 col-xl-9 mb-1">
+            {% include "default/formRecherche.html.twig" %}
         </div>
-        <div class="espacepub col-12 col-sm-12 col-md-5 col-lg-4 col-xl-3 text-center">
-            {% include "/default/publicite.html.twig" %}
+        <div class="col-12 col-sm12 col-md-6 col-lg-4 col-xl-3">
+            <div class="espacepub text-center shadow w-100"> {% include "/default/publicite.html.twig" %}</div>
         </div>
     </div>
-{% endblock %}
 
-{% block javascript_footer %}
-    <!-- coucou -->
-{% endblock %}
+
+    <div class="col-8">
+        <p>Dernière annonce postée : </p>
+    </div>
+
+    <div>
+        {% include "default/annonce.html.twig" %}
+    </div>
+
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

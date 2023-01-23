@@ -114,14 +114,18 @@ background-color: var(--color-quaternary);
   }
 
   .borderenvoi{
+
     background: var(--color-secondary);
     border: dotted;
     border-color: var(--color-quaternary);
     width: fit-content;
     rotate: 6deg;
-translate: 10px -10px;
+translate: -5px -10px;
 opacity: 60%;
 border-radius: 6px;
   }
  /* ACCUEIL */
 /* =================================================================================== */
+
+
+

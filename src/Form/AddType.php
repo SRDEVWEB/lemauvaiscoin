@@ -5,10 +5,11 @@ namespace App\Form;
 use App\Entity\Annonce;
 use Doctrine\DBAL\Types\DateType;
 use Doctrine\DBAL\Types\FloatType;
-use Doctrine\DBAL\Types\TextType;
 use phpDocumentor\Reflection\Types\Float_;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\File;
@@ -21,23 +22,24 @@ class AddType extends AbstractType
     {
         $builder
 
-            ->add('prix')
-            ->add('commentaires', \Symfony\Component\Form\Extension\Core\Type\TextType::class,[
-                'attr'=>['placeholder'=>'Faites un commentaire...']])
-            ->add('description',\Symfony\Component\Form\Extension\Core\Type\TextType::class,['attr'=>['placeholder'=>'Ajouter la description du produit']])
-            ->add('couleur', \Symfony\Component\Form\Extension\Core\Type\TextType::class,[
-        'attr'=>['placeholder'=>'None']])
-            ->add('poids', \Symfony\Component\Form\Extension\Core\Type\TextType::class,[
-                'attr'=>['placeholder'=>'0']])
-            ->add('hauteur', \Symfony\Component\Form\Extension\Core\Type\TextType::class,[
-                'attr'=>['placeholder'=>'0']])
-            ->add('largeur', \Symfony\Component\Form\Extension\Core\Type\TextType::class,[
-                'attr'=>['placeholder'=>'0']])
-            ->add('profondeur', \Symfony\Component\Form\Extension\Core\Type\TextType::class,[
-                'attr'=>['placeholder'=>'0']])
-            ->add('dimensions', \Symfony\Component\Form\Extension\Core\Type\TextType::class,[
-                'attr'=>['placeholder'=>'0']])
             ->add('produit')
+            ->add('categorie')
+            ->add('prix')
+            ->add('commentaires', TextType::class,[
+                'attr'=>['placeholder'=>'Faites un commentaire...']])
+            ->add('description',TextType::class,['attr'=>['placeholder'=>'Ajouter la description du produit']])
+            ->add('couleur', TextType::class,[
+        'attr'=>['placeholder'=>'None']])
+            ->add('poids', TextType::class,[
+                'attr'=>['placeholder'=>'0']])
+            ->add('hauteur', TextType::class,[
+                'attr'=>['placeholder'=>'0']])
+            ->add('largeur', TextType::class,[
+                'attr'=>['placeholder'=>'0']])
+            ->add('profondeur', TextType::class,[
+                'attr'=>['placeholder'=>'0']])
+            ->add('dimensions', TextType::class,[
+                'attr'=>['placeholder'=>'0']])
             ->add('img')
             ->add('image', FileType::class, [
                 'label' => 'Photo du produit',
@@ -62,9 +64,8 @@ class AddType extends AbstractType
                     ])
                 ],
             ])
-            ->add('categorie')
-
-            ->add('Envoyer', SubmitType::class,)
+            ->add('Envoyer', SubmitType::class, ['label' => 'Envoyer',
+                'attr' => ['class'=>'subbutt']])
         ;
     }
 

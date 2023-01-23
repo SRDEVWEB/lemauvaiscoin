@@ -1,4 +1,4 @@
-<button class="subbutt mb-2" onclick="location.href='#'"><p class="Penvoie m-1" id="lapin">En haut</p></button>
+<button class="subbutt subbuttfixed mb-2" onclick="location.href='#'"><p class="Penvoie m-1">En haut</p></button>
 <div class="cadrefooter rounded-4 m-2">
     <div class="row">
         <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-3">
@@ -7,7 +7,6 @@
                 <ul class="list-unstyled">
                     <li><a class="btn btn-default" href="{{ path('app.home') }}">Accueil</a></li>
                     <li><a class="btn btn-default" href="{{ path('new_compte') }}">Recherche</a></li>
-{#                    <li><a class="btn btn-default" href="{{ path('mon_compte') }}">Mon compteController</a></li>#}
                     <li><a class="btn btn-default" href="{{ path('new_compte') }}">Mes annonces</a></li>
                     <li><a class="btn btn-default" href="{{ path('new_annonce') }}">Ajouter une annonce</a></li>
                     <li><a class="btn btn-default" href="{{ path('new_compte') }}">Mon panier</a></li>
@@ -18,8 +17,6 @@
                         {% else %}
                             <a class="nav-link" href="{{ path('app.login') }}">Se connecter</a>
                         {% endif %}
-
-{#                        <a class="btn btn-default" href="{{ path('app.login') }}">Se connecter</a></li></ul>#}
             </div>
         </div>
         <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-3">
@@ -34,7 +31,7 @@
                 MAIS ECRIRE QUELQUE CHOSE
             </div>
         </div>
-        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-3">
+        <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-3" id="lapin">
             <h5 class="powered text-center">POWERED BY SEBASTIEN ROULLET💫</h5>
             <div class="border m-2 p-3 rounded-2">
                 Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illum, libero veniam tempora a doloremque incidunt, quae ducimus dolorum, quas nisi consequatur adipisci magnam perferendis obcaecati deleniti. Eaque optio corporis aliquid?
